@@ -356,47 +356,17 @@ Sécurité du Refresh Token
 ## 4. Flux d'Authentification (Flows)
 OIDC définit plusieurs flux d'authentification adaptés à différents types d'applications. Le choix du flux dépend du type de client et de ses contraintes de sécurité.
 
+**Comparaison des Flows OIDC :**
 
-Comparaison des Flows OIDC
+| Flow | Statut | Usage | Type de client | response_type |
+|------|--------|-------|----------------|---------------|
+| Authorization Code | Recommandé | Serveurs web | Clients confidentiels | `code` |
+| Code + PKCE | Recommandé | SPA, Mobile | Clients publics | `code` + `code_challenge` |
+| Hybrid | Spécifique | Cas particuliers | ID Token immédiat | `code id_token` |
+| Implicit | **Déprécié** | Ne plus utiliser | Risques sécurité | `token id_token` |
+| Client Credentials | Machine-to-Machine | Pas d'utilisateur | Serveurs / Daemons | `client_credentials` |
 
-
-Authorization
-Code
-Recommandé
-Serveurs web
-Clients confidentiels
-response_type=code
-
-
-Code + PKCE
-Recommandé
-SPA, Mobile
-Clients publics
-+ code_challenge
-
-
-Hybrid
-Spécifique
-Cas particuliers
-ID Token immédiat
-code id_token
-
-
-Implicit
-Déprécié
-Ne plus utiliser
-Risques sécurité
-token id_token
-
-
-Client
-Credentials
-Machine-to-
-Machine
-Pas d'utilisateur
-client_credentials
-
-Figure 5 : Vue d'ensemble des différents flows OIDC
+*Figure 5 : Vue d'ensemble des différents flows OIDC*
 
 
 ### 4.1 Authorization Code Flow
@@ -405,55 +375,55 @@ Figure 5 : Vue d'ensemble des différents flows OIDC
 C'est le flow le plus sécurisé et recommandé pour les applications serveur (clients confidentiels). Les tokens ne transitent jamais par le navigateur.
 
 
-Authorization Code Flow
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│  User Agent  │     │  RP (Client) │     │   OP (Auth)  │     │   Resource   │
+│  (Navigateur)│     │  (Serveur)   │     │   Server     │     │   Server     │
+└──────┬───────┘     └──────┬───────┘     └──────┬───────┘     └──────┬───────┘
+       │  1. Accès app      │                     │                    │
+       │───────────────────>│                     │                    │
+       │                    │                     │                    │
+       │  2. Redirect 302   │                     │                    │
+       │<───────────────────│                     │                    │
+       │                    │                     │                    │
+       │  3. GET /authorize?response_type=code    │                    │
+       │      &client_id=...&scope=openid         │                    │
+       │─────────────────────────────────────────>│                    │
+       │                    │                     │                    │
+       │  4. Login + Consentement                 │                    │
+       │<────────────────────────────────────────>│                    │
+       │                    │                     │                    │
+       │  5. Redirect → redirect_uri?code=AUTH_CODE&state=...         │
+       │<─────────────────────────────────────────│                    │
+       │                    │                     │                    │
+       │  6. Callback code  │                     │                    │
+       │───────────────────>│                     │                    │
+       │                    │                     │                    │
+       │                    │  7. POST /token     │                    │
+       │                    │  (code+client_secret) BACK-CHANNEL      │
+       │                    │────────────────────>│                    │
+       │                    │                     │                    │
+       │                    │  8. {id_token,       │                    │
+       │                    │   access_token,      │                    │
+       │                    │   refresh_token}     │                    │
+       │                    │<────────────────────│                    │
+       │                    │                     │                    │
+       │                    │  9. Valide ID Token │                    │
+       │                    │  (signature, nonce) │                    │
+       │                    │                     │                    │
+       │ 10. Session créée  │                     │                    │
+       │<───────────────────│                     │                    │
+       │                    │                     │                    │
+       │                    │ 11. GET /resource    │                    │
+       │                    │ Authorization: Bearer token              │
+       │                    │─────────────────────────────────────────>│
+       │                    │                     │                    │
+       │                    │ 12. Données protégées                    │
+       │                    │<─────────────────────────────────────────│
+       │                    │                     │                    │
+```
 
-
-User Agent
-RP (Client)
-OP (Auth)
-Resource
-
-
--
-
-
-1. Accès à l'application
-
-
-2. Redirect → /authorize
-
-
-3. GET /authorize?response_type=code&client_id=...&redirect_uri=...&scope=openid
-
-
-4. Login + Consentement
-Utilisateur s'authentifie
-
-
-5. Redirect → redirect_uri?code=AUTH_CODE&state=...
-
-
-6. Callback avec code
-
-
-7. POST /token (code + client_secret)
-
-8. {id_token, access_token, refresh_token}
-BACK-CHANNEL (serveur à serveur)
-
-
-9. Validation ID Token
-
-
-10. Session créée
-
-
-11. API call avec Access Token
-
-12. Données protégées
-
-
-Figure 6 : Flux Authorization Code complet
+*Figure 6 : Flux Authorization Code complet*
 
 
 #### Exemple de requête /authorize
@@ -487,39 +457,42 @@ grant_type=authorization_code
 **PKCE** (Proof Key for Code Exchange, prononcé "pixie") est une extension de sécurité obligatoire pour les clients publics (SPA, mobile) qui ne peuvent pas garder un secret.
 
 
-Fonctionnement de PKCE
+**Fonctionnement de PKCE :**
 
+```
+┌──────────────┐                          ┌──────────────┐
+│    Client     │                          │   OP (Auth)  │
+│  (SPA/Mobile) │                          │    Server    │
+└──────┬───────┘                          └──────┬───────┘
+       │                                         │
+       │  1. Génère :                            │
+       │     code_verifier (random)              │
+       │     code_challenge = SHA256(verifier)   │
+       │                                         │
+       │  2. GET /authorize                      │
+       │     + code_challenge                    │
+       │     + code_challenge_method=S256        │
+       │────────────────────────────────────────>│
+       │                                         │
+       │                          3. Stocke code_challenge
+       │                             associé au code
+       │                                         │
+       │  [... authentification utilisateur ...]  │
+       │                                         │
+       │  4. POST /token                         │
+       │     + code + code_verifier              │
+       │────────────────────────────────────────>│
+       │                                         │
+       │                          5. Vérifie :
+       │                             SHA256(verifier)
+       │                             == code_challenge ?
+       │                                         │
+       │  6. Si OK → {id_token, access_token}    │
+       │<────────────────────────────────────────│
+       │                                         │
+```
 
-1. Client génère
-code_verifier (random)
-code_challenge = SHA256(verifier)
-
-
-2. /authorize
-+ code_challenge
-+ code_challenge_method=S256
-
-
-3. OP stocke
-code_challenge
-associé au code
-
-
-4. /token
-+ code_verifier
-(le secret original)
-
-
-5. OP vérifie
-SHA256(verifier)
-== code_challenge ?
-
-
-6. Si OK
-→ Émet les tokens
-Sécurisé!
-
-Figure 7 : PKCE protège contre l'interception du code d'autorisation
+*Figure 7 : PKCE protège contre l'interception du code d'autorisation*
 
 
  ```
@@ -898,40 +871,42 @@ Pour les nouveaux projets, **privilégiez OpenID Connect**. SAML reste pertinent
 
 
 ## 10. Glossaire
+
 Définitions des termes techniques utilisés dans cette documentation.
 
-
-Access TokenToken utilisé pour accéder aux ressources protégées (APIs). Peut être un JWT ou un token opaque. Courte durée de vie.
-Authorization CodeCode temporaire échangé contre des tokens. Usage unique, expire rapidement (~10 min).
-Authorization EndpointEndpoint de l'OP où le client redirige l'utilisateur pour l'authentification (/authorize).
-Authorization ServerServeur qui émet les tokens. Dans OIDC, c'est l'OpenID Provider.
-Bearer TokenType de token où la simple possession suffit pour l'utiliser. Envoyé en header "Authorization: Bearer {token}".
-ClaimInformation sur un sujet (utilisateur) contenue dans un token. Ex: name, email, sub.
-ClientApplication qui demande l'authentification. Synonyme de Relying Party (RP).
-Client CredentialsFlow d'authentification machine-to-machine sans utilisateur.
-Client IDIdentifiant public unique du client auprès de l'OP.
-Client SecretSecret partagé entre le client confidential et l'OP. Ne jamais exposer.
-Confidential ClientClient capable de garder un secret (application serveur).
-DiscoveryMécanisme permettant de découvrir automatiquement la configuration d'un OP (.well-known).
-Grant TypeType de flux OAuth 2.0 utilisé (authorization_code, client_credentials, refresh_token...).
-ID TokenJWT contenant l'identité de l'utilisateur authentifié. Spécifique à OIDC.
-Issuer (iss)URL identifiant l'OpenID Provider qui a émis le token.
-JWKS (JSON Web Key Set)Document JSON contenant les clés publiques pour vérifier les signatures JWT.
-JWT (JSON Web Token)Standard (RFC 7519) pour représenter des claims de façon sécurisée. Composé de Header.Payload.Signature.
-NonceValeur aléatoire unique pour prévenir les attaques de rejeu. Lié à une session spécifique.
-OAuth 2.0Framework d'autorisation sur lequel OIDC est construit. Gère l'accès aux ressources.
-OpenID Provider (OP)Serveur qui authentifie les utilisateurs et émet les tokens OIDC.
-PKCE (Proof Key for Code Exchange)Extension de sécurité utilisant code_verifier/code_challenge pour protéger les clients publics.
-Public ClientClient ne pouvant pas garder de secret (SPA, mobile). Doit utiliser PKCE.
-Redirect URIURL où l'OP redirige après authentification. Doit être pré-enregistrée.
-Refresh TokenToken longue durée permettant d'obtenir de nouveaux Access Tokens sans ré-authentification.
-Relying Party (RP)Application qui s'appuie sur l'OP pour authentifier les utilisateurs. Le client OIDC.
-Resource ServerServeur hébergeant les ressources protégées (API). Valide les Access Tokens.
-Response TypeParamètre indiquant ce que le client attend (code, token, id_token, ou combinaisons).
-ScopePermission demandée par le client. OIDC requiert au minimum "openid".
-StateValeur aléatoire pour prévenir les attaques CSRF. Vérifié au callback.
-Subject (sub)Identifiant unique de l'utilisateur chez l'OP. Claim obligatoire.
-Token EndpointEndpoint de l'OP pour échanger un code contre des tokens (/token).
-Token IntrospectionEndpoint permettant de vérifier la validité d'un token auprès de l'OP.
-Token RevocationEndpoint permettant d'invalider un token avant son expiration.
-UserInfo EndpointEndpoint retournant les claims utilisateur à partir d'un Access Token (/userinfo).
+| Terme | Définition |
+|-------|------------|
+| Access Token | Token utilisé pour accéder aux ressources protégées (APIs). Peut être un JWT ou un token opaque. Courte durée de vie. |
+| Authorization Code | Code temporaire échangé contre des tokens. Usage unique, expire rapidement (~10 min). |
+| Authorization Endpoint | Endpoint de l'OP où le client redirige l'utilisateur pour l'authentification (`/authorize`). |
+| Authorization Server | Serveur qui émet les tokens. Dans OIDC, c'est l'OpenID Provider. |
+| Bearer Token | Type de token où la simple possession suffit pour l'utiliser. Envoyé en header `Authorization: Bearer {token}`. |
+| Claim | Information sur un sujet (utilisateur) contenue dans un token. Ex : `name`, `email`, `sub`. |
+| Client | Application qui demande l'authentification. Synonyme de Relying Party (RP). |
+| Client Credentials | Flow d'authentification machine-to-machine sans utilisateur. |
+| Client ID | Identifiant public unique du client auprès de l'OP. |
+| Client Secret | Secret partagé entre le client confidential et l'OP. Ne jamais exposer. |
+| Confidential Client | Client capable de garder un secret (application serveur). |
+| Discovery | Mécanisme permettant de découvrir automatiquement la configuration d'un OP (`.well-known`). |
+| Grant Type | Type de flux OAuth 2.0 utilisé (`authorization_code`, `client_credentials`, `refresh_token`...). |
+| ID Token | JWT contenant l'identité de l'utilisateur authentifié. Spécifique à OIDC. |
+| Issuer (iss) | URL identifiant l'OpenID Provider qui a émis le token. |
+| JWKS (JSON Web Key Set) | Document JSON contenant les clés publiques pour vérifier les signatures JWT. |
+| JWT (JSON Web Token) | Standard (RFC 7519) pour représenter des claims de façon sécurisée. Composé de `Header.Payload.Signature`. |
+| Nonce | Valeur aléatoire unique pour prévenir les attaques de rejeu. Lié à une session spécifique. |
+| OAuth 2.0 | Framework d'autorisation sur lequel OIDC est construit. Gère l'accès aux ressources. |
+| OpenID Provider (OP) | Serveur qui authentifie les utilisateurs et émet les tokens OIDC. |
+| PKCE (Proof Key for Code Exchange) | Extension de sécurité utilisant `code_verifier`/`code_challenge` pour protéger les clients publics. |
+| Public Client | Client ne pouvant pas garder de secret (SPA, mobile). Doit utiliser PKCE. |
+| Redirect URI | URL où l'OP redirige après authentification. Doit être pré-enregistrée. |
+| Refresh Token | Token longue durée permettant d'obtenir de nouveaux Access Tokens sans ré-authentification. |
+| Relying Party (RP) | Application qui s'appuie sur l'OP pour authentifier les utilisateurs. Le client OIDC. |
+| Resource Server | Serveur hébergeant les ressources protégées (API). Valide les Access Tokens. |
+| Response Type | Paramètre indiquant ce que le client attend (`code`, `token`, `id_token`, ou combinaisons). |
+| Scope | Permission demandée par le client. OIDC requiert au minimum `openid`. |
+| State | Valeur aléatoire pour prévenir les attaques CSRF. Vérifié au callback. |
+| Subject (sub) | Identifiant unique de l'utilisateur chez l'OP. Claim obligatoire. |
+| Token Endpoint | Endpoint de l'OP pour échanger un code contre des tokens (`/token`). |
+| Token Introspection | Endpoint permettant de vérifier la validité d'un token auprès de l'OP. |
+| Token Revocation | Endpoint permettant d'invalider un token avant son expiration. |
+| UserInfo Endpoint | Endpoint retournant les claims utilisateur à partir d'un Access Token (`/userinfo`). |

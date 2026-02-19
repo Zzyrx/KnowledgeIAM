@@ -346,6 +346,53 @@ L'utilisateur tente d'accéder à une ressource protégée sur le SP, qui le red
 
 **Flux SP-Initiated SSO (HTTP Redirect + POST) :**
 
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│  Utilisateur  │     │      SP      │     │      IdP     │
+│  (Navigateur) │     │  (Service    │     │  (Identity   │
+│              │     │   Provider)  │     │   Provider)  │
+└──────┬───────┘     └──────┬───────┘     └──────┬───────┘
+       │                    │                     │
+       │  1. Accès ressource│                     │
+       │    protégée        │                     │
+       │───────────────────>│                     │
+       │                    │                     │
+       │  2. 302 Redirect   │                     │
+       │  + AuthnRequest    │                     │
+       │  (HTTP Redirect    │                     │
+       │   Binding)         │                     │
+       │<───────────────────│                     │
+       │                    │                     │
+       │  3. GET /sso?SAMLRequest=...             │
+       │─────────────────────────────────────────>│
+       │                    │                     │
+       │  4. Authentification                     │
+       │     (login/password, MFA...)             │
+       │<────────────────────────────────────────>│
+       │                    │                     │
+       │  5. Formulaire HTML auto-submit          │
+       │     avec SAMLResponse signée             │
+       │     (HTTP POST Binding)                  │
+       │<─────────────────────────────────────────│
+       │                    │                     │
+       │  6. POST /acs      │                     │
+       │  (SAMLResponse)    │                     │
+       │───────────────────>│                     │
+       │                    │                     │
+       │                    │  7. Valide assertion │
+       │                    │  (signature, conditions,
+       │                    │   audience, timestamps)
+       │                    │                     │
+       │  8. Session créée  │                     │
+       │  + accès accordé   │                     │
+       │<───────────────────│                     │
+       │                    │                     │
+```
+
+*Figure : Flux SP-Initiated SSO complet*
+
+**Étapes détaillées :**
+
 1. L'utilisateur accède à une ressource protégée sur le SP
 2. Le SP redirige vers l'IdP avec un AuthnRequest (302 Redirect + SAMLRequest via HTTP Redirect)
 3. Le navigateur suit la redirection
