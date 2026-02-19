@@ -11,9 +11,30 @@ interface Props {
 }
 
 const { title, description, readingTime, chapters, headings } = Astro.props;
+
+const techArticleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description: description,
+  author: {
+    '@type': 'Person',
+    name: 'Jean-Baptiste Janssen',
+    url: 'https://knowledgeiam.netlify.app',
+    jobTitle: 'Expert IAM / SSO',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Jean-Baptiste Janssen — Expert IAM/SSO',
+    url: 'https://knowledgeiam.netlify.app',
+  },
+  inLanguage: 'fr-FR',
+  ...(readingTime && { timeRequired: readingTime }),
+};
 ---
 
 <BaseLayout title={`${title} — Jean-Baptiste Janssen`} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(techArticleSchema)} />
   <article class="py-16 sm:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->

@@ -7,6 +7,12 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     @apply bg-iam-dark text-iam-text font-sans antialiased;
   }
@@ -32,4 +38,17 @@
   .animate-delay-100 { transition-delay: 100ms; }
   .animate-delay-200 { transition-delay: 200ms; }
   .animate-delay-300 { transition-delay: 300ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .animate-delay-100,
+    .animate-delay-200,
+    .animate-delay-300 {
+      transition-delay: 0ms;
+    }
+  }
 }
