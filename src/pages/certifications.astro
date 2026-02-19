@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CertBadge from '../components/CertBadge.astro';
+import CTA from '../components/CTA.astro';
+
+const certifications = [
+  {
+    code: 'SC-300',
+    name: 'Microsoft Identity and Access Administrator',
+    status: 'preparation' as const,
+    description:
+      "Certification Microsoft validant les compétences d'administration des identités et des accès avec Azure AD / Entra ID. Couvre la configuration du SSO, le Conditional Access, la gouvernance des identités et la protection des identités.",
+    skills: [
+      'Implémenter et gérer les identités dans Entra ID',
+      'Configurer et gérer l\'authentification (MFA, passwordless)',
+      'Planifier et implémenter le Conditional Access',
+      'Gérer les identités externes (B2B, B2C)',
+      'Configurer la gouvernance des identités (revues d\'accès, PIM)',
+    ],
+  },
+  {
+    code: 'SC-100',
+    name: 'Microsoft Cybersecurity Architect',
+    status: 'preparation' as const,
+    description:
+      "Certification expert Microsoft pour les architectes cybersécurité. Valide la capacité à concevoir des architectures de sécurité zero-trust couvrant l'identité, les données, les applications et l'infrastructure.",
+    skills: [
+      'Concevoir une stratégie et une architecture Zero Trust',
+      'Évaluer les stratégies de conformité et de gouvernance (GRC)',
+      'Concevoir la sécurité des opérations (SecOps)',
+      'Concevoir la sécurité des identités et des accès',
+      'Concevoir la sécurité des données et des applications',
+      'Concevoir la sécurité de l\'infrastructure',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Certifications — Jean-Baptiste Janssen"
+  description="Certifications Microsoft en cours : SC-300 (Identity and Access Administrator) et SC-100 (Cybersecurity Architect)."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-3xl sm:text-4xl font-bold">Certifications</h1>
+        <p class="mt-4 text-lg text-iam-muted max-w-2xl mx-auto">
+          En complément de mon expérience terrain, je prépare les certifications Microsoft
+          qui valident mes compétences en IAM et cybersécurité.
+        </p>
+      </div>
+
+      <!-- Parcours -->
+      <div class="mb-12 p-6 rounded-xl border border-iam-cyan/20 bg-iam-cyan/5">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-5 h-5 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <h2 class="text-lg font-semibold text-white">Parcours de certification</h2>
+        </div>
+        <p class="text-sm text-iam-muted leading-relaxed">
+          <strong class="text-white">SC-300</strong> (Associate) valide les compétences d'administration IAM au quotidien.
+          <strong class="text-white">SC-100</strong> (Expert) élève le niveau vers l'architecture de sécurité globale.
+          Les deux certifications se complètent pour couvrir l'ensemble du spectre identité + sécurité.
+        </p>
+      </div>
+
+      <!-- Certifications -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {certifications.map((cert) => (
+          <CertBadge {...cert} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Besoin d'un expert certifié ?"
+    description="Mon expérience terrain combinée à ces certifications garantit une expertise solide sur les technologies Microsoft IAM."
+  />
+</BaseLayout>

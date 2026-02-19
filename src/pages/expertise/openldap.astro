@@ -1,0 +1,60 @@
+---
+import ExpertiseLayout from '../../layouts/ExpertiseLayout.astro';
+
+const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>';
+---
+
+<ExpertiseLayout
+  title="OpenLDAP & Annuaires"
+  description="Architecture, administration et optimisation d'annuaires LDAP. Intégration avec ForgeRock DS et Active Directory."
+  icon={icon}
+>
+  <h2>Mon expérience OpenLDAP</h2>
+  <p>
+    Chez Allianz (2024–2026), j'administre les annuaires <strong>OpenLDAP</strong> qui constituent
+    le socle de l'infrastructure IAM. Ces annuaires alimentent les solutions de SSO et de provisioning,
+    et s'intègrent avec ForgeRock DS et Active Directory.
+  </p>
+
+  <h2>Compétences clés</h2>
+
+  <h3>Architecture & Administration</h3>
+  <ul>
+    <li>Conception de schémas LDAP (objectClasses, attributs custom)</li>
+    <li>Administration slapd : configuration cn=config</li>
+    <li>Gestion des ACL et politiques de contrôle d'accès</li>
+    <li>Overlays (memberOf, refint, unique, ppolicy)</li>
+  </ul>
+
+  <h3>Réplication & Haute disponibilité</h3>
+  <ul>
+    <li>Réplication SyncRepl (provider/consumer)</li>
+    <li>Topologie multi-maîtres (N-Way Multi-Provider)</li>
+    <li>Monitoring de la réplication et gestion des conflits</li>
+    <li>Stratégies de backup et restauration</li>
+  </ul>
+
+  <h3>Performance & Optimisation</h3>
+  <ul>
+    <li>Indexation des attributs pour les recherches fréquentes</li>
+    <li>Tuning des paramètres de cache (DB, entry)</li>
+    <li>Analyse des logs et optimisation des requêtes</li>
+    <li>Dimensionnement pour des annuaires à forte volumétrie</li>
+  </ul>
+
+  <h3>Intégration</h3>
+  <ul>
+    <li>Connecteurs LDAP vers ForgeRock IDM et AM</li>
+    <li>Synchronisation avec Active Directory</li>
+    <li>Intégration avec les applications métier (LDAP bind, search)</li>
+    <li>Migration entre annuaires (OpenLDAP, ForgeRock DS, AD)</li>
+  </ul>
+
+  <h2>Cas d'usage maîtrisés</h2>
+  <ul>
+    <li>Annuaire centralisé d'entreprise pour l'authentification</li>
+    <li>Réplication multi-sites pour la haute disponibilité</li>
+    <li>Source autoritaire pour le provisioning des identités</li>
+    <li>Interopérabilité avec les solutions de SSO (ForgeRock, AD)</li>
+  </ul>
+</ExpertiseLayout>

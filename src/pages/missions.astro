@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="Missions — Jean-Baptiste Janssen"
+  description="Références missions IAM : EDF (intégration SSO, 50+ applications) et Allianz (transformation IAM, ForgeRock, Entra ID)."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-3xl sm:text-4xl font-bold">Missions</h1>
+        <p class="mt-4 text-lg text-iam-muted max-w-2xl mx-auto">
+          4 ans d'expérience en tant que consultant IAM chez Accenture Technology Solutions,
+          au service de deux grands comptes majeurs.
+        </p>
+      </div>
+
+      <!-- Mission Allianz -->
+      <div class="mb-16">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-iam-cyan/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">Allianz — Transformation IAM</h2>
+            <p class="text-iam-cyan font-medium">Expert IAM — 2024 à 2026</p>
+          </div>
+        </div>
+
+        <div class="pl-0 sm:pl-16 space-y-6">
+          <p class="text-iam-muted leading-relaxed">
+            Mission de transformation de l'infrastructure IAM d'Allianz France.
+            Intervention sur l'ensemble de la chaîne IAM : ForgeRock, Entra ID, Kerberos,
+            OpenLDAP. Support N2/N3 et automatisation des processus.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Infrastructure Kerberos</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Automatisation de la génération et rotation des keytabs
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Scripts de déploiement et monitoring
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Intégration avec ForgeRock AM (IWA/SPNEGO)
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Entra ID & Graph API</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Automatisation via Microsoft Graph API
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Scripts PowerShell pour la gestion en masse
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Conditional Access et politiques MFA
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">ForgeRock & ForgeOps</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Déploiement sur Kubernetes via ForgeOps
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Administration AM, IDM, DS, IG
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Fédération SAML 2.0 et OIDC
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">OpenLDAP</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Administration et optimisation des annuaires
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Réplication et haute disponibilité
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Intégration avec ForgeRock DS et AD
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            {['ForgeRock', 'Entra ID', 'Kerberos', 'OpenLDAP', 'PowerShell', 'Graph API', 'Kubernetes', 'SAML 2.0', 'OIDC'].map(tag => (
+              <span class="px-3 py-1 text-xs font-medium rounded-full bg-iam-cyan/10 text-iam-cyan border border-iam-cyan/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-white/10 my-12" />
+
+      <!-- Mission EDF -->
+      <div>
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-iam-cyan/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">EDF — Équipe Raccordement SSO</h2>
+            <p class="text-iam-cyan font-medium">Intégrateur SSO — 2022 à 2024</p>
+          </div>
+        </div>
+
+        <div class="pl-0 sm:pl-16 space-y-6">
+          <p class="text-iam-muted leading-relaxed">
+            Intégration de plus de 50 applications au WebSSO d'EDF. Rattaché à l'équipe
+            de raccordement SSO, j'ai assuré l'intégration technique des applications métier
+            en SAML 2.0 et OIDC, ainsi que le support N2/N3.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Intégration SSO</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  50+ applications raccordées en SSO
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Protocoles SAML 2.0 et OIDC
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Configuration des Service Providers
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-lg border border-white/10 bg-iam-medium/30">
+              <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Automatisation & Support</h3>
+              <ul class="space-y-2 text-sm text-iam-muted">
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Connecteurs LDAP / Active Directory
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Automatisation via Python et Bash
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Support N2/N3 sur la chaîne SSO
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            {['SAML 2.0', 'OIDC', 'LDAP', 'Active Directory', 'Python', 'Bash', 'WebSSO'].map(tag => (
+              <span class="px-3 py-1 text-xs font-medium rounded-full bg-iam-cyan/10 text-iam-cyan border border-iam-cyan/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Jean-Baptiste Janssen`} description={description}>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- En-tête -->
+      <div class="mb-12">
+        <div class="w-14 h-14 rounded-xl bg-iam-cyan/10 flex items-center justify-center mb-6">
+          <Fragment set:html={icon} />
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold">{title}</h1>
+        <p class="mt-4 text-lg text-iam-muted leading-relaxed max-w-2xl">{description}</p>
+      </div>
+
+      <!-- Contenu dynamique -->
+      <div class="prose prose-invert prose-cyan max-w-none
+        [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-12 [&_h2]:mb-6
+        [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-4
+        [&_p]:text-iam-muted [&_p]:leading-relaxed
+        [&_ul]:space-y-2 [&_li]:text-iam-muted
+        [&_a]:text-iam-cyan [&_a]:no-underline hover:[&_a]:underline
+        [&_strong]:text-white">
+        <slot />
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

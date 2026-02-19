@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Get unique tags
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Blog IAM — Jean-Baptiste Janssen"
+  description="Articles techniques sur l'IAM, le SSO, ForgeRock, Entra ID et les protocoles de fédération."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-3xl sm:text-4xl font-bold">Blog</h1>
+        <p class="mt-4 text-lg text-iam-muted max-w-2xl mx-auto">
+          Articles techniques et retours d'expérience sur la gestion des identités et des accès.
+        </p>
+      </div>
+
+      <!-- Tags filter -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-iam-cyan bg-iam-cyan/10 text-iam-cyan" data-tag="all">
+          Tous
+        </button>
+        {allTags.map((tag) => (
+          <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-white/10 text-iam-muted hover:border-iam-cyan/30 hover:text-iam-cyan transition-colors" data-tag={tag}>
+            {tag}
+          </button>
+        ))}
+      </div>
+
+      <!-- Articles -->
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="blog-grid">
+          {posts.map((post) => (
+            <div data-tags={post.data.tags.join(',')}>
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                slug={post.id.replace(/\.mdx?$/, '')}
+                date={post.data.date}
+                tags={post.data.tags}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="text-center text-iam-muted">Aucun article pour le moment. Revenez bientôt !</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.tag-filter');
+  const cards = document.querySelectorAll('#blog-grid > div');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+
+      // Update active button
+      buttons.forEach((b) => {
+        b.classList.remove('border-iam-cyan', 'bg-iam-cyan/10', 'text-iam-cyan');
+        b.classList.add('border-white/10', 'text-iam-muted');
+      });
+      btn.classList.remove('border-white/10', 'text-iam-muted');
+      btn.classList.add('border-iam-cyan', 'bg-iam-cyan/10', 'text-iam-cyan');
+
+      // Filter cards
+      cards.forEach((card) => {
+        const cardTags = card.getAttribute('data-tags') || '';
+        if (tag === 'all' || cardTags.split(',').includes(tag!)) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ExpertiseCard from '../components/ExpertiseCard.astro';
+import MissionCard from '../components/MissionCard.astro';
+import CTA from '../components/CTA.astro';
+
+const expertises = [
+  {
+    title: 'ForgeRock',
+    description: 'AM, IDM, DS, IG — SSO, fédération, provisioning et gateway sur Kubernetes avec ForgeOps.',
+    href: '/expertise/forgerock/',
+    icon: '<svg class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>',
+  },
+  {
+    title: 'Microsoft Entra ID',
+    description: 'Azure AD, Graph API, Conditional Access, MFA et automatisation PowerShell.',
+    href: '/expertise/entra-id/',
+    icon: '<svg class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>',
+  },
+  {
+    title: 'Protocoles SSO',
+    description: 'SAML 2.0, OpenID Connect, OAuth 2.0 — intégration, troubleshooting et guides complets.',
+    href: '/expertise/protocoles/',
+    icon: '<svg class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
+  },
+];
+
+const stats = [
+  { value: '4 ans', label: "d'expérience IAM" },
+  { value: '50+', label: 'applications intégrées en SSO' },
+  { value: '2', label: 'grands comptes (EDF, Allianz)' },
+];
+---
+
+<BaseLayout title="Jean-Baptiste Janssen — Expert IAM / SSO">
+  <!-- Hero -->
+  <Hero
+    title='Expert <span class="text-iam-cyan">IAM</span> / <span class="text-iam-cyan">SSO</span>'
+    subtitle="Freelance spécialisé en gestion des identités et des accès. ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC — je sécurise et simplifie vos accès."
+    cta={{ label: 'Discutons de votre projet', href: '/contact/' }}
+  />
+
+  <!-- Expertise -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 animate-on-scroll">Domaines d'expertise</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {expertises.map((exp, i) => (
+          <div class:list={['animate-on-scroll', i === 1 && 'animate-delay-100', i === 2 && 'animate-delay-200']}>
+            <ExpertiseCard {...exp} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Chiffres clés -->
+  <section class="py-16 sm:py-20 bg-iam-medium/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        {stats.map(({ value, label }, i) => (
+          <div class:list={['animate-on-scroll', i === 1 && 'animate-delay-100', i === 2 && 'animate-delay-200']}>
+            <div class="text-3xl sm:text-4xl font-bold text-iam-cyan">{value}</div>
+            <div class="mt-2 text-iam-muted">{label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Missions -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 animate-on-scroll">Missions récentes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="animate-on-scroll">
+          <MissionCard
+            company="EDF — Équipe Raccordement SSO"
+            role="Intégrateur SSO"
+            period="2022 – 2024"
+            highlights={[
+              'Intégration de 50+ applications en WebSSO (SAML 2.0, OIDC)',
+              'Configuration connecteurs LDAP / Active Directory',
+              'Automatisation du raccordement via Python & Bash',
+              'Support N2/N3 sur la chaîne SSO',
+            ]}
+          />
+        </div>
+        <div class="animate-on-scroll animate-delay-100">
+          <MissionCard
+            company="Allianz — Transformation IAM"
+            role="Expert IAM"
+            period="2024 – 2026"
+            highlights={[
+              'Infrastructure Kerberos avec automatisation des keytabs',
+              'Automatisation Entra ID via Graph API & PowerShell',
+              'Déploiement ForgeRock sur Kubernetes (ForgeOps)',
+              'Administration OpenLDAP et support N2/N3',
+            ]}
+          />
+        </div>
+      </div>
+      <div class="text-center mt-8 animate-on-scroll">
+        <a href="/missions/" class="text-iam-cyan hover:text-iam-cyan/80 text-sm font-medium transition-colors">
+          Voir le détail des missions &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA />
+</BaseLayout>

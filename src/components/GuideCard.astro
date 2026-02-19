@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  chapters: number;
+  readingTime?: string;
+  tags: string[];
+}
+
+const { title, description, slug, chapters, readingTime, tags } = Astro.props;
+---
+
+<a href={`/guides/${slug}/`} class="group block p-6 rounded-xl border border-white/10 bg-iam-medium/50 hover:border-iam-cyan/30 hover:bg-iam-medium transition-all">
+  <div class="flex items-start justify-between gap-4 mb-3">
+    <h3 class="text-lg font-semibold text-white group-hover:text-iam-cyan transition-colors">{title}</h3>
+    <svg class="w-5 h-5 text-iam-muted group-hover:text-iam-cyan transition-colors flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </div>
+  <p class="text-sm text-iam-muted leading-relaxed mb-4">{description}</p>
+  <div class="flex items-center gap-4 text-xs text-iam-muted">
+    <span>{chapters} chapitres</span>
+    {readingTime && <span>{readingTime}</span>}
+  </div>
+  <div class="flex flex-wrap gap-1.5 mt-3">
+    {tags.map((tag) => (
+      <span class="px-2 py-0.5 text-xs rounded-full bg-iam-cyan/10 text-iam-cyan">{tag}</span>
+    ))}
+  </div>
+</a>

@@ -1,0 +1,108 @@
+---
+import ExpertiseLayout from '../../layouts/ExpertiseLayout.astro';
+
+const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>';
+---
+
+<ExpertiseLayout
+  title="Protocoles SSO — SAML 2.0 / OIDC / OAuth 2.0"
+  description="Maîtrise complète des protocoles de fédération d'identités. Intégration, troubleshooting et formation sur SAML 2.0, OpenID Connect et OAuth 2.0."
+  icon={icon}
+>
+  <h2>Mon expérience</h2>
+  <p>
+    Les protocoles de fédération sont au cœur de mon métier depuis 4 ans. Chez EDF (2022–2024),
+    j'ai intégré <strong>50+ applications en SSO</strong> via SAML 2.0 et OIDC. Chez Allianz (2024–2026),
+    je gère la fédération B2B et l'intégration des applications internes avec ForgeRock AM et Entra ID.
+  </p>
+
+  <h2>SAML 2.0</h2>
+  <ul>
+    <li>Configuration des Service Providers (SP) et Identity Providers (IdP)</li>
+    <li>Échange de métadonnées et configuration des bindings (HTTP-POST, HTTP-Redirect)</li>
+    <li>Gestion des assertions, attributs et Name ID formats</li>
+    <li>Signature et chiffrement des messages SAML</li>
+    <li>Troubleshooting : décodage des requêtes/réponses, validation des certificats</li>
+    <li>Single Logout (SLO) : front-channel et back-channel</li>
+  </ul>
+  <p>
+    <a href="/guides/saml/">Lire le guide SAML 2.0 complet</a> (10 chapitres, 55 sections).
+  </p>
+
+  <h2>OpenID Connect (OIDC)</h2>
+  <ul>
+    <li>Flux Authorization Code, Implicit, Client Credentials, Device Code</li>
+    <li>Configuration des Relying Parties et des OpenID Providers</li>
+    <li>Gestion des tokens (ID Token, Access Token, Refresh Token)</li>
+    <li>Validation JWT et introspection</li>
+    <li>Discovery (.well-known/openid-configuration) et JWKS</li>
+    <li>Scopes, claims et userinfo endpoint</li>
+  </ul>
+  <p>
+    <a href="/guides/oidc/">Lire le guide OIDC complet</a> (10 chapitres, 54 sections).
+  </p>
+
+  <h2>OAuth 2.0</h2>
+  <ul>
+    <li>Modèle d'autorisation et distinction authentification vs. autorisation</li>
+    <li>Grant types : Authorization Code + PKCE, Client Credentials, Refresh Token</li>
+    <li>Protection des API avec des Access Tokens (Bearer)</li>
+    <li>Scopes et consentement utilisateur</li>
+    <li>Bonnes pratiques de sécurité (PKCE, state, nonce)</li>
+  </ul>
+
+  <h2>Comparatif des protocoles</h2>
+  <div class="overflow-x-auto mt-6 mb-8">
+    <table class="w-full text-sm text-left">
+      <thead>
+        <tr class="border-b border-white/10">
+          <th class="py-3 px-4 text-iam-muted font-medium">Critère</th>
+          <th class="py-3 px-4 text-iam-muted font-medium">SAML 2.0</th>
+          <th class="py-3 px-4 text-iam-muted font-medium">OIDC</th>
+          <th class="py-3 px-4 text-iam-muted font-medium">OAuth 2.0</th>
+        </tr>
+      </thead>
+      <tbody class="[&_td]:py-3 [&_td]:px-4 [&_td]:text-iam-muted [&_tr]:border-b [&_tr]:border-white/5">
+        <tr>
+          <td class="font-medium text-white">Usage principal</td>
+          <td>SSO web entreprise</td>
+          <td>SSO web & mobile</td>
+          <td>Autorisation API</td>
+        </tr>
+        <tr>
+          <td class="font-medium text-white">Format</td>
+          <td>XML</td>
+          <td>JSON / JWT</td>
+          <td>JSON</td>
+        </tr>
+        <tr>
+          <td class="font-medium text-white">Transport</td>
+          <td>HTTP Redirect/POST</td>
+          <td>HTTP REST</td>
+          <td>HTTP REST</td>
+        </tr>
+        <tr>
+          <td class="font-medium text-white">Complexité</td>
+          <td>Élevée</td>
+          <td>Moyenne</td>
+          <td>Faible</td>
+        </tr>
+        <tr>
+          <td class="font-medium text-white">Cas d'usage type</td>
+          <td>B2B, legacy</td>
+          <td>Applications modernes</td>
+          <td>API, microservices</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Cas d'usage maîtrisés</h2>
+  <ul>
+    <li>Intégration d'applications SaaS en SSO (SAML ou OIDC selon le SP)</li>
+    <li>Fédération B2B entre organisations</li>
+    <li>Protection d'API avec OAuth 2.0 + JWT</li>
+    <li>Migration de SAML vers OIDC</li>
+    <li>Troubleshooting avancé des flux de fédération</li>
+  </ul>
+</ExpertiseLayout>

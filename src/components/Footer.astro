@@ -1,0 +1,52 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/10 bg-iam-dark" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <a href="/" class="text-xl font-bold text-iam-cyan tracking-tight">
+          JB<span class="text-white">Janssen</span>
+        </a>
+        <p class="mt-3 text-iam-muted text-sm leading-relaxed">
+          Expert IAM / SSO — ForgeRock, Entra ID, SAML, OIDC.<br />
+          Nantes, France — Remote France entière.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Navigation</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/expertise/" class="text-iam-muted hover:text-iam-cyan transition-colors">Expertise</a></li>
+          <li><a href="/missions/" class="text-iam-muted hover:text-iam-cyan transition-colors">Missions</a></li>
+          <li><a href="/guides/" class="text-iam-muted hover:text-iam-cyan transition-colors">Guides</a></li>
+          <li><a href="/contact/" class="text-iam-muted hover:text-iam-cyan transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Contact</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="mailto:contact@jbjanssen.fr" class="text-iam-muted hover:text-iam-cyan transition-colors">
+              contact@jbjanssen.fr
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/jeanbaptistejanssen" target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-iam-cyan transition-colors">
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-white/10 text-center text-sm text-iam-muted">
+      &copy; {currentYear} Jean-Baptiste Janssen. Tous droits réservés.
+    </div>
+  </div>
+</footer>

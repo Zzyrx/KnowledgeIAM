@@ -1,0 +1,60 @@
+---
+import ExpertiseLayout from '../../layouts/ExpertiseLayout.astro';
+
+const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>';
+---
+
+<ExpertiseLayout
+  title="Kerberos"
+  description="Infrastructure Kerberos, gestion et automatisation des keytabs, intégration avec Active Directory et ForgeRock."
+  icon={icon}
+>
+  <h2>Mon expérience Kerberos</h2>
+  <p>
+    Chez Allianz (2024–2026), je gère l'infrastructure <strong>Kerberos</strong> qui sert de socle
+    d'authentification pour les applications internes. J'ai mis en place des processus d'automatisation
+    pour la gestion des keytabs et l'intégration avec l'écosystème IAM.
+  </p>
+
+  <h2>Compétences clés</h2>
+
+  <h3>Infrastructure Kerberos</h3>
+  <ul>
+    <li>Administration du KDC (Key Distribution Center)</li>
+    <li>Gestion des principals et des politiques de mots de passe</li>
+    <li>Configuration des realms et des cross-realm trusts</li>
+    <li>Intégration avec Active Directory (AD KDC)</li>
+  </ul>
+
+  <h3>Gestion des Keytabs</h3>
+  <ul>
+    <li>Génération et rotation automatisée des keytabs</li>
+    <li>Distribution sécurisée des keytabs aux services</li>
+    <li>Scripts d'automatisation (Bash, PowerShell) pour le lifecycle des keytabs</li>
+    <li>Monitoring de l'expiration et alerting</li>
+  </ul>
+
+  <h3>Troubleshooting</h3>
+  <ul>
+    <li>Diagnostic des erreurs Kerberos (clock skew, encryption types, keytab mismatch)</li>
+    <li>Analyse des traces réseau (Wireshark, tcpdump)</li>
+    <li>Résolution des problèmes de délégation (constrained/unconstrained)</li>
+    <li>Debug des SPNs (Service Principal Names)</li>
+  </ul>
+
+  <h2>Intégration IAM</h2>
+  <ul>
+    <li>Authentification Kerberos avec ForgeRock AM (module Desktop SSO / IWA)</li>
+    <li>SPNEGO pour le SSO transparent depuis les postes Windows</li>
+    <li>Kerberos comme backend d'authentification pour les applications web</li>
+    <li>Coexistence Kerberos / SAML / OIDC dans un écosystème hybride</li>
+  </ul>
+
+  <h2>Cas d'usage maîtrisés</h2>
+  <ul>
+    <li>SSO transparent (Integrated Windows Authentication) pour les utilisateurs internes</li>
+    <li>Automatisation complète du cycle de vie des keytabs</li>
+    <li>Authentification Kerberos pour les services backend (Hadoop, bases de données)</li>
+    <li>Migration d'authentification Kerberos vers des protocoles modernes (SAML, OIDC)</li>
+  </ul>
+</ExpertiseLayout>

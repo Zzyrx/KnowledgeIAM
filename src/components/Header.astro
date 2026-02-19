@@ -1,0 +1,90 @@
+---
+const navLinks = [
+  { href: '/', label: 'Accueil' },
+  { href: '/expertise/', label: 'Expertise' },
+  { href: '/missions/', label: 'Missions' },
+  { href: '/certifications/', label: 'Certifications' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-iam-dark/95 backdrop-blur-sm border-b border-white/10" role="banner">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Navigation principale">
+    <a href="/" class="text-xl font-bold text-iam-cyan tracking-tight">
+      JB<span class="text-white">Janssen</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-1">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+              currentPath === href || (href !== '/' && currentPath.startsWith(href))
+                ? 'text-iam-cyan'
+                : 'text-iam-muted hover:text-white',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-iam-muted hover:text-white"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-iam-dark/95 backdrop-blur-sm">
+    <ul class="px-4 py-3 space-y-1">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'block px-3 py-2 rounded-md text-base font-medium transition-colors',
+              currentPath === href || (href !== '/' && currentPath.startsWith(href))
+                ? 'text-iam-cyan bg-white/5'
+                : 'text-iam-muted hover:text-white hover:bg-white/5',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('menu-icon');
+
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+    if (icon) {
+      icon.setAttribute('d', open
+        ? 'M6 18L18 6M6 6l12 12'
+        : 'M4 6h16M4 12h16M4 18h16'
+      );
+    }
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import CTA from '../../components/CTA.astro';
+
+const guides = await getCollection('guides');
+---
+
+<BaseLayout
+  title="Guides Techniques — Jean-Baptiste Janssen"
+  description="Guides techniques complets sur les protocoles de fédération d'identités : SAML 2.0, OpenID Connect."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-3xl sm:text-4xl font-bold">Guides Techniques</h1>
+        <p class="mt-4 text-lg text-iam-muted max-w-2xl mx-auto">
+          Des guides exhaustifs sur les protocoles de fédération d'identités,
+          rédigés à partir de mon expérience terrain en mission.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {guides.map((guide) => (
+          <GuideCard
+            title={guide.data.title}
+            description={guide.data.description}
+            slug={guide.id.replace(/\.mdx?$/, '')}
+            chapters={guide.data.chapters}
+            readingTime={guide.data.readingTime}
+            tags={guide.data.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Un besoin de formation ou d'accompagnement ?"
+    description="Je peux vous accompagner sur l'intégration de ces protocoles dans votre infrastructure."
+  />
+</BaseLayout>

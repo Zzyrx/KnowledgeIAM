@@ -1,0 +1,66 @@
+---
+import ExpertiseLayout from '../../layouts/ExpertiseLayout.astro';
+
+const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>';
+---
+
+<ExpertiseLayout
+  title="Microsoft Entra ID"
+  description="Administration et automatisation d'Azure AD / Entra ID — Conditional Access, MFA, Graph API et PowerShell à grande échelle."
+  icon={icon}
+>
+  <h2>Mon expérience Entra ID</h2>
+  <p>
+    Chez Allianz (2024–2026), j'interviens sur l'environnement Microsoft Entra ID (anciennement Azure AD)
+    pour l'administration des identités cloud et l'automatisation des processus IAM via <strong>Graph API</strong>
+    et <strong>PowerShell</strong>.
+  </p>
+
+  <h2>Compétences clés</h2>
+
+  <h3>Administration Entra ID</h3>
+  <ul>
+    <li>Gestion des utilisateurs, groupes et rôles Azure AD</li>
+    <li>Configuration du SSO pour les applications SaaS (Enterprise Apps)</li>
+    <li>Provisioning automatique via SCIM</li>
+    <li>Gestion des App Registrations et des Service Principals</li>
+  </ul>
+
+  <h3>Sécurité & Conditional Access</h3>
+  <ul>
+    <li>Politiques de Conditional Access (MFA, device compliance, IP ranges)</li>
+    <li>Configuration MFA (Microsoft Authenticator, FIDO2, SMS)</li>
+    <li>Politiques de risque utilisateur et connexion (Identity Protection)</li>
+    <li>Revues d'accès et gouvernance des identités</li>
+  </ul>
+
+  <h3>Automatisation Graph API & PowerShell</h3>
+  <ul>
+    <li>Scripts PowerShell pour la gestion en masse des identités</li>
+    <li>Appels Microsoft Graph API (REST) pour l'automatisation</li>
+    <li>Rapports d'audit et d'activité automatisés</li>
+    <li>Gestion programmatique des politiques de Conditional Access</li>
+    <li>Automatisation du cycle de vie des comptes (onboarding/offboarding)</li>
+  </ul>
+
+  <h3>Hybride & Synchronisation</h3>
+  <ul>
+    <li>Azure AD Connect / Cloud Sync</li>
+    <li>Synchronisation Active Directory on-premises vers Entra ID</li>
+    <li>Gestion des identités hybrides et du Seamless SSO</li>
+  </ul>
+
+  <h2>Cas d'usage maîtrisés</h2>
+  <ul>
+    <li>SSO d'entreprise pour applications SaaS et on-premises</li>
+    <li>Automatisation de l'onboarding/offboarding via Graph API</li>
+    <li>Sécurisation des accès avec Conditional Access et MFA</li>
+    <li>Audit et conformité des accès à grande échelle</li>
+    <li>Intégration Entra ID avec ForgeRock AM (fédération SAML/OIDC)</li>
+  </ul>
+
+  <p>
+    <a href="/expertise/protocoles/">Voir aussi : protocoles SSO</a> pour comprendre les flux
+    SAML et OIDC utilisés avec Entra ID.
+  </p>
+</ExpertiseLayout>

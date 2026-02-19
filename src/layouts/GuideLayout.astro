@@ -1,0 +1,110 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  readingTime?: string;
+  chapters: number;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, readingTime, chapters, headings } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Jean-Baptiste Janssen`} description={description}>
+  <article class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="max-w-4xl mb-12">
+        <a href="/guides/" class="inline-flex items-center gap-1 text-sm text-iam-muted hover:text-iam-cyan transition-colors mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Retour aux guides
+        </a>
+        <h1 class="text-3xl sm:text-4xl font-bold">{title}</h1>
+        <p class="mt-4 text-lg text-iam-muted leading-relaxed">{description}</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-iam-muted">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            {chapters} chapitres
+          </span>
+          {readingTime && (
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {readingTime}
+            </span>
+          )}
+        </div>
+      </header>
+
+      <!-- Content + TOC -->
+      <div class="flex gap-12">
+        <!-- Main content -->
+        <div class="flex-1 min-w-0 max-w-4xl
+          prose prose-invert prose-cyan
+          prose-headings:scroll-mt-24
+          prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-white/10
+          prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-4
+          prose-p:text-iam-muted prose-p:leading-relaxed
+          prose-li:text-iam-muted
+          prose-a:text-iam-cyan prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-white
+          prose-code:text-iam-cyan prose-code:bg-iam-medium prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+          prose-pre:bg-iam-medium prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl
+          prose-table:text-sm
+          prose-th:text-iam-muted prose-th:font-medium prose-th:border-white/10
+          prose-td:text-iam-muted prose-td:border-white/10
+          prose-blockquote:border-iam-cyan prose-blockquote:text-iam-muted">
+          <slot />
+        </div>
+
+        <!-- Sidebar TOC (desktop) -->
+        <aside class="hidden xl:block w-64 flex-shrink-0">
+          <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      </div>
+
+      <!-- Mobile TOC (collapsible) -->
+      <div class="xl:hidden fixed bottom-4 right-4 z-40">
+        <button
+          id="toc-toggle"
+          class="w-12 h-12 bg-iam-cyan text-iam-dark rounded-full shadow-lg flex items-center justify-center hover:bg-iam-cyan/90 transition-colors"
+          aria-label="Table des matières"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+        </button>
+        <div
+          id="toc-mobile"
+          class="hidden absolute bottom-14 right-0 w-72 max-h-96 overflow-y-auto bg-iam-dark border border-white/10 rounded-xl shadow-xl p-4"
+        >
+          <TableOfContents headings={headings} />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('toc-toggle');
+  const panel = document.getElementById('toc-mobile');
+
+  btn?.addEventListener('click', () => {
+    panel?.classList.toggle('hidden');
+  });
+
+  // Close on link click (mobile)
+  panel?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => panel?.classList.add('hidden'));
+  });
+</script>

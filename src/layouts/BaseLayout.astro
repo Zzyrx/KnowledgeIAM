@@ -1,0 +1,130 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Jean-Baptiste Janssen — Expert IAM / SSO freelance. ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC. Nantes, France.',
+  ogImage = '/images/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jean-Baptiste Janssen',
+  jobTitle: 'Expert IAM / SSO',
+  url: Astro.site?.toString(),
+  sameAs: ['https://linkedin.com/in/jeanbaptistejanssen'],
+  email: 'contact@jbjanssen.fr',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nantes',
+    addressCountry: 'FR',
+  },
+  knowsAbout: ['ForgeRock', 'Microsoft Entra ID', 'SAML 2.0', 'OpenID Connect', 'OAuth 2.0', 'Kerberos', 'OpenLDAP', 'IAM', 'SSO'],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Jean-Baptiste Janssen — Expert IAM / SSO',
+  description: 'Consultant freelance spécialisé en gestion des identités et des accès (IAM). ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC.',
+  url: Astro.site?.toString(),
+  provider: { '@type': 'Person', name: 'Jean-Baptiste Janssen' },
+  areaServed: { '@type': 'Country', name: 'France' },
+  serviceType: ['Identity and Access Management', 'Single Sign-On', 'Federation'],
+};
+
+const breadcrumbParts = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbSchema = breadcrumbParts.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: Astro.site?.toString() },
+    ...breadcrumbParts.map((part, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: part.charAt(0).toUpperCase() + part.slice(1).replace(/-/g, ' '),
+      item: new URL(breadcrumbParts.slice(0, i + 1).join('/') + '/', Astro.site).toString(),
+    })),
+  ],
+} : null;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Jean-Baptiste Janssen — Expert IAM" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <!-- Google Fonts (preconnect + font-display swap) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0C1933" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Skip to content (a11y) -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-iam-cyan focus:text-iam-dark focus:rounded-lg focus:font-semibold">
+      Aller au contenu principal
+    </a>
+    <Header />
+    <main id="main-content" class="flex-1 pt-16">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

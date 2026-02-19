@@ -1,0 +1,74 @@
+---
+import ExpertiseLayout from '../../layouts/ExpertiseLayout.astro';
+
+const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>';
+---
+
+<ExpertiseLayout
+  title="ForgeRock"
+  description="Suite IAM complète pour la gestion des identités, le SSO et la fédération à grande échelle. Expérience acquise en contexte grand compte (Allianz)."
+  icon={icon}
+>
+  <h2>Mon expérience ForgeRock</h2>
+  <p>
+    Dans le cadre de la mission Allianz (2024–2026), j'interviens sur l'ensemble de la suite ForgeRock déployée
+    sur Kubernetes via <strong>ForgeOps</strong>. Cette mission m'a permis de maîtriser les 4 composants clés de la plateforme
+    dans un environnement de production exigeant.
+  </p>
+
+  <h2>Composants maîtrisés</h2>
+
+  <h3>Access Management (AM)</h3>
+  <ul>
+    <li>Configuration et administration du SSO centralisé</li>
+    <li>Fédération d'identités SAML 2.0 et OIDC avec des partenaires externes</li>
+    <li>Mise en place de politiques d'authentification adaptative</li>
+    <li>Arbres d'authentification (authentication trees) personnalisés</li>
+    <li>Gestion des sessions et des tokens</li>
+  </ul>
+
+  <h3>Identity Management (IDM)</h3>
+  <ul>
+    <li>Provisioning et réconciliation des identités</li>
+    <li>Connecteurs vers Active Directory, LDAP et bases de données</li>
+    <li>Workflows d'approbation et gestion du cycle de vie des comptes</li>
+    <li>Synchronisation bidirectionnelle des attributs</li>
+  </ul>
+
+  <h3>Directory Services (DS)</h3>
+  <ul>
+    <li>Administration de l'annuaire LDAP ForgeRock</li>
+    <li>Réplication multi-maîtres et topologie haute disponibilité</li>
+    <li>Optimisation des performances (indexation, tuning JVM)</li>
+    <li>Migration depuis OpenDJ et OpenLDAP</li>
+  </ul>
+
+  <h3>Identity Gateway (IG)</h3>
+  <ul>
+    <li>Reverse proxy pour la protection des applications legacy</li>
+    <li>Transformation de headers et injection de tokens</li>
+    <li>Routes de fédération et filtres de sécurité</li>
+  </ul>
+
+  <h2>ForgeOps & Kubernetes</h2>
+  <ul>
+    <li>Déploiement de la stack ForgeRock sur Kubernetes</li>
+    <li>Gestion des configurations via Helm charts et Kustomize</li>
+    <li>Monitoring et troubleshooting en environnement conteneurisé</li>
+    <li>Pipelines CI/CD pour les mises à jour de configuration</li>
+  </ul>
+
+  <h2>Cas d'usage maîtrisés</h2>
+  <ul>
+    <li>SSO d'entreprise multi-applications (web, mobile, API)</li>
+    <li>Fédération B2B avec des partenaires via SAML et OIDC</li>
+    <li>Provisioning automatisé depuis un SIRH</li>
+    <li>Migration d'un SSO legacy vers ForgeRock AM</li>
+    <li>Protection d'applications sans agent via IG</li>
+  </ul>
+
+  <p>
+    <a href="/guides/">Consulter les guides techniques</a> pour approfondir les protocoles
+    utilisés avec ForgeRock (SAML 2.0, OIDC).
+  </p>
+</ExpertiseLayout>

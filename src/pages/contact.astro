@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Contact — Jean-Baptiste Janssen"
+  description="Contactez Jean-Baptiste Janssen pour vos projets IAM / SSO. Disponible en freelance, remote France entière."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl sm:text-4xl font-bold">Parlons de votre projet</h1>
+        <p class="mt-4 text-iam-muted max-w-xl mx-auto">
+          Un besoin en IAM, SSO ou fédération d'identités ? Décrivez-moi votre contexte, je vous réponds sous 24h.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Formulaire -->
+        <div class="lg:col-span-2">
+          <ContactForm />
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="space-y-8">
+          <div class="p-6 rounded-xl border border-white/10 bg-iam-medium/50">
+            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Coordonnées</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-iam-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:contact@jbjanssen.fr" class="text-iam-muted hover:text-iam-cyan transition-colors text-sm">
+                  contact@jbjanssen.fr
+                </a>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-iam-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <a href="https://linkedin.com/in/jeanbaptistejanssen" target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-iam-cyan transition-colors text-sm">
+                  LinkedIn
+                </a>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-iam-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="text-iam-muted text-sm">Nantes, France — Remote France entière</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-xl border border-iam-cyan/20 bg-iam-cyan/5">
+            <p class="text-sm text-iam-muted">
+              <span class="text-iam-cyan font-semibold">Disponible</span> à partir de mai 2026 pour de nouvelles missions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
