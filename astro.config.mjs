@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://jbjanssen.netlify.app',
+  site: 'https://knowledgeiam.netlify.app',
   integrations: [tailwind(), sitemap()],
 });
