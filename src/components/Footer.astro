@@ -1,4 +1,5 @@
 ---
+import { SITE } from '../config/site';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -32,12 +33,12 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Contact</h3>
         <ul class="space-y-2 text-sm">
           <li>
-            <a href="mailto:jeanbaptiste.janssen10@gmail.com" class="text-iam-muted hover:text-iam-cyan transition-colors">
-              jeanbaptiste.janssen10@gmail.com
+            <a href={`mailto:${SITE.email}`} class="text-iam-muted hover:text-iam-cyan transition-colors">
+              {SITE.email}
             </a>
           </li>
           <li>
-            <a href="https://linkedin.com/in/jeanbaptistejanssen" target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-iam-cyan transition-colors">
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-iam-cyan transition-colors">
               LinkedIn
             </a>
           </li>

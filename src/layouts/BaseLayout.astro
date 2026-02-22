@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
 import '../styles/global.css';
 
 interface Props {
@@ -24,7 +25,7 @@ const personSchema = {
   jobTitle: 'Expert IAM / SSO',
   url: Astro.site?.toString(),
   sameAs: ['https://linkedin.com/in/jeanbaptistejanssen'],
-  email: 'jeanbaptiste.janssen10@gmail.com',
+  email: SITE.email,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Nantes',
@@ -61,8 +62,9 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="no-js">
   <head>
+    <script>document.documentElement.classList.remove('no-js');</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
@@ -94,11 +96,6 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     )}
 
-    <!-- Google Fonts (preconnect + font-display swap) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
     <!-- Theme color -->
     <meta name="theme-color" content="#0C1933" />
   </head>
@@ -125,6 +122,13 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
         { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
       );
       document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+      // Fallback : forcer la visibilité après 3s si l'observer n'a pas déclenché
+      setTimeout(() => {
+        document.querySelectorAll('.animate-on-scroll:not(.is-visible)').forEach((el) => {
+          el.classList.add('is-visible');
+        });
+      }, 3000);
     </script>
   </body>
 </html>

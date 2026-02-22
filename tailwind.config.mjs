@@ -7,7 +7,6 @@ export default {
         'iam-dark': '#0C1933',
         'iam-medium': '#122850',
         'iam-cyan': '#00B4DC',
-        'iam-blue': '#2962B4',
         'iam-text': '#FFFFFF',
         'iam-muted': '#B4C3DC',
       },

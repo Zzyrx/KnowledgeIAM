@@ -26,11 +26,11 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
 
       <!-- Tags filter -->
       <div class="flex flex-wrap justify-center gap-2 mb-12">
-        <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-iam-cyan bg-iam-cyan/10 text-iam-cyan" data-tag="all">
+        <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-iam-cyan bg-iam-cyan/10 text-iam-cyan" data-tag="all" aria-pressed="true">
           Tous
         </button>
         {allTags.map((tag) => (
-          <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-white/10 text-iam-muted hover:border-iam-cyan/30 hover:text-iam-cyan transition-colors" data-tag={tag}>
+          <button class="tag-filter px-3 py-1.5 text-sm rounded-full border border-white/10 text-iam-muted hover:border-iam-cyan/30 hover:text-iam-cyan transition-colors" data-tag={tag} aria-pressed="false">
             {tag}
           </button>
         ))}
@@ -70,9 +70,11 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
       buttons.forEach((b) => {
         b.classList.remove('border-iam-cyan', 'bg-iam-cyan/10', 'text-iam-cyan');
         b.classList.add('border-white/10', 'text-iam-muted');
+        b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.remove('border-white/10', 'text-iam-muted');
       btn.classList.add('border-iam-cyan', 'bg-iam-cyan/10', 'text-iam-cyan');
+      btn.setAttribute('aria-pressed', 'true');
 
       // Filter cards
       cards.forEach((card) => {

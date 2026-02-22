@@ -1,0 +1,33 @@
+// Données centralisées des expertises IAM
+export const expertises = [
+  {
+    title: 'ForgeRock',
+    description: 'Suite IAM complète — AM (SSO, fédération), IDM (provisioning), DS (annuaire LDAP), IG (gateway) et déploiement Kubernetes via ForgeOps.',
+    href: '/expertise/forgerock/',
+    icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>',
+  },
+  {
+    title: 'Microsoft Entra ID',
+    description: 'Azure AD, Graph API, PowerShell, Conditional Access, MFA et SSO. Administration et automatisation à grande échelle.',
+    href: '/expertise/entra-id/',
+    icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>',
+  },
+  {
+    title: 'OpenLDAP & Annuaires',
+    description: 'Architecture, administration, réplication et optimisation. Intégration avec ForgeRock DS et Active Directory.',
+    href: '/expertise/openldap/',
+    icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>',
+  },
+  {
+    title: 'Kerberos',
+    description: 'Infrastructure Kerberos, gestion des keytabs, automatisation et intégration avec les environnements AD et ForgeRock.',
+    href: '/expertise/kerberos/',
+    icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>',
+  },
+  {
+    title: 'Protocoles SSO',
+    description: 'SAML 2.0, OpenID Connect, OAuth 2.0 — maîtrise complète des flux, intégration, troubleshooting et guides détaillés.',
+    href: '/expertise/protocoles/',
+    icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
+  },
+] as const;

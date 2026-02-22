@@ -34,27 +34,39 @@ const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
   </ul>
 </nav>
 
-<script>
-  // Highlight active TOC item on scroll
-  const links = document.querySelectorAll('.toc a');
-  const headings = Array.from(links).map((link) => {
-    const id = link.getAttribute('href')?.slice(1);
-    return id ? document.getElementById(id) : null;
-  }).filter(Boolean) as HTMLElement[];
+<script is:inline>
+  // Guard contre la double exécution (le composant est instancié 2 fois)
+  if (!window.__tocInitialized) {
+    window.__tocInitialized = true;
 
-  function updateActive() {
-    const scrollY = window.scrollY + 100;
-    let current = 0;
-    for (let i = 0; i < headings.length; i++) {
-      if (headings[i].offsetTop <= scrollY) current = i;
+    // Highlight active TOC item on scroll
+    const links = document.querySelectorAll('.toc a');
+    const headings = Array.from(links).map((link) => {
+      const id = link.getAttribute('href')?.slice(1);
+      return id ? document.getElementById(id) : null;
+    }).filter(Boolean);
+
+    function updateActive() {
+      const scrollY = window.scrollY + 100;
+      let current = 0;
+      for (let i = 0; i < headings.length; i++) {
+        if (headings[i].offsetTop <= scrollY) current = i;
+      }
+      links.forEach((link, i) => {
+        link.classList.toggle('text-iam-cyan', i === current);
+        link.classList.toggle('text-iam-muted', i !== current && link.closest('li')?.classList.contains('pl-4') === false);
+        link.classList.toggle('text-iam-muted/70', i !== current && link.closest('li')?.classList.contains('pl-4') === true);
+      });
     }
-    links.forEach((link, i) => {
-      link.classList.toggle('text-iam-cyan', i === current);
-      link.classList.toggle('text-iam-muted', i !== current && link.closest('li')?.classList.contains('pl-4') === false);
-      link.classList.toggle('text-iam-muted/70', i !== current && link.closest('li')?.classList.contains('pl-4') === true);
-    });
-  }
 
-  window.addEventListener('scroll', updateActive, { passive: true });
-  updateActive();
+    // Throttle scroll avec requestAnimationFrame
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { updateActive(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+    updateActive();
+  }
 </script>

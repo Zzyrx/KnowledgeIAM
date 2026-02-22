@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname;
           <a
             href={href}
             class:list={[
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2 focus:rounded',
               currentPath === href || (href !== '/' && currentPath.startsWith(href))
                 ? 'text-iam-cyan'
                 : 'text-iam-muted hover:text-white',
@@ -45,7 +45,7 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
           <a
             href={href}
             class:list={[
-              'block px-3 py-2 rounded-md text-base font-medium transition-colors',
+              'block px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2 focus:rounded',
               currentPath === href || (href !== '/' && currentPath.startsWith(href))
                 ? 'text-iam-cyan bg-white/5'
                 : 'text-iam-muted hover:text-white hover:bg-white/5',
@@ -81,6 +81,8 @@ const currentPath = Astro.url.pathname;
   btn?.addEventListener('click', () => {
     const open = menu?.classList.toggle('hidden') === false;
     btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.style.overflow = open ? 'hidden' : '';
     if (icon) {
       icon.setAttribute('d', open
         ? 'M6 18L18 6M6 6l12 12'

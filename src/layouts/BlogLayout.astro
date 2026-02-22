@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { SITE } from '../config/site';
 
 interface Props {
   title: string;
@@ -27,12 +28,12 @@ const articleSchema = {
   author: {
     '@type': 'Person',
     name: author,
-    url: 'https://knowledgeiam.netlify.app',
+    url: Astro.site?.toString()?.replace(/\/$/, '') || SITE.url,
   },
   publisher: {
     '@type': 'Organization',
     name: 'Jean-Baptiste Janssen — Expert IAM/SSO',
-    url: 'https://knowledgeiam.netlify.app',
+    url: Astro.site?.toString()?.replace(/\/$/, '') || SITE.url,
   },
   inLanguage: 'fr-FR',
 };
@@ -45,7 +46,7 @@ const articleSchema = {
       <!-- Header -->
       <header class="mb-12">
         <a href="/blog/" class="inline-flex items-center gap-1 text-sm text-iam-muted hover:text-iam-cyan transition-colors mb-6">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Retour au blog
@@ -67,17 +68,9 @@ const articleSchema = {
       </header>
 
       <!-- Content -->
-      <div class="prose prose-invert prose-cyan max-w-none
-        prose-headings:scroll-mt-24
+      <div class="prose-iam max-w-none
         prose-h2:text-xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4
-        prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3
-        prose-p:text-iam-muted prose-p:leading-relaxed
-        prose-li:text-iam-muted
-        prose-a:text-iam-cyan prose-a:no-underline hover:prose-a:underline
-        prose-strong:text-white
-        prose-code:text-iam-cyan prose-code:bg-iam-medium prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
-        prose-pre:bg-iam-medium prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl
-        prose-blockquote:border-iam-cyan prose-blockquote:text-iam-muted">
+        prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3">
         <slot />
       </div>
     </div>

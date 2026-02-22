@@ -55,7 +55,7 @@ Figure 1 : OAuth 2.0 gère l'autorisation, OIDC ajoute l'authentification
 
 
 | Aspect | OAuth 2.0 | OpenID Connect |
-
+|--------|-----------|----------------|
 | Objectif principal | Autorisation (accès aux ressources) | Authentification (identité utilisateur) |
 | Question répondue | "Peut-il accéder à X ?" | "Qui est cette personne ?" |
 | Token principal | Access Token | ID Token (+ Access Token) |
@@ -164,7 +164,7 @@ Responsabilités du RP
 #### Types de Clients
 
 | Type | Description | Exemple | Flow recommandé |
-
+|------|-------------|---------|-----------------|
 | **Confidential** | Peut garder un secret (client_secret) | Application serveur (Node.js, Java...) | Authorization Code |
 | **Public** | Ne peut PAS garder de secret | SPA, App mobile, Desktop | Authorization Code + PKCE |
 
@@ -283,7 +283,7 @@ Figure 4 : Les trois parties d'un JWT séparées par des points
 
  // Claims utilisateur (si scope openid + profile)
  "name": "Jean Dupont",
- "email": "[[email&#160;protected]](/cdn-cgi/l/email-protection)",
+ "email": "jean.dupont@example.com",
  "email_verified": true
 }
 ```
@@ -291,7 +291,7 @@ Figure 4 : Les trois parties d'un JWT séparées par des points
 #### Claims obligatoires de l'ID Token
 
 | Claim | Description | Exemple |
-
+|-------|-------------|---------|
 | `iss` | Issuer - URL de l'OpenID Provider | https://auth.example.com |
 | `sub` | Subject - Identifiant unique de l'utilisateur | user_abc123 |
 | `aud` | Audience - Client ID du Relying Party | client_xyz789 |
@@ -547,7 +547,7 @@ Le Hybrid Flow combine Authorization Code et Implicit, retournant certains token
 
 
 | response_type | Tokens immédiats (front-channel) | Tokens via /token (back-channel) |
-
+|---------------|----------------------------------|----------------------------------|
 | `code id_token` | ID Token | Access Token, Refresh Token |
 | `code token` | Access Token | ID Token, Refresh Token |
 | `code id_token token` | ID Token, Access Token | Refresh Token |
@@ -586,7 +586,7 @@ Les **scopes** définissent les permissions demandées, et les **claims** sont l
 ### 5.1 Scopes Standards OIDC
 
 | Scope | Description | Claims associés |
-
+|-------|-------------|-----------------|
 | `openid` | **OBLIGATOIRE** - Active OIDC (sinon c'est juste OAuth 2.0) | sub |
 | `profile` | Informations de profil basiques | name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, updated_at |
 | `email` | Adresse email | email, email_verified |
@@ -602,13 +602,13 @@ Sans le scope `openid`, la requête est traitée comme une simple requête OAuth
 ### 5.2 Claims Standards
 
 | Claim | Type | Description | Exemple |
-
+|-------|------|-------------|---------|
 | `sub` | string | Identifiant unique de l'utilisateur (Subject) | "user_abc123" |
 | `name` | string | Nom complet | "Jean Dupont" |
 | `given_name` | string | Prénom | "Jean" |
 | `family_name` | string | Nom de famille | "Dupont" |
 | `preferred_username` | string | Nom d'utilisateur préféré | "jdupont" |
-| `email` | string | Adresse email | "[[email&#160;protected]](/cdn-cgi/l/email-protection)" |
+| `email` | string | Adresse email | "jean.dupont@example.com" |
 | `email_verified` | boolean | Email vérifié ? | true |
 | `picture` | string | URL de la photo de profil | "https://..." |
 | `locale` | string | Langue préférée (BCP47) | "fr-FR" |
@@ -628,7 +628,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...
  "given_name": "Jean",
  "family_name": "Dupont",
  "preferred_username": "jdupont",
- "email": "[[email&#160;protected]](/cdn-cgi/l/email-protection)",
+ "email": "jean.dupont@example.com",
  "email_verified": true,
  "picture": "https://example.com/photos/jdupont.jpg",
  "locale": "fr-FR",
@@ -671,7 +671,7 @@ Figure 8 : Les endpoints principaux d'un OpenID Provider
 
 
 | Endpoint | Méthode | Description | Obligatoire |
-
+|----------|---------|-------------|-------------|
 | `/authorize` | GET | Initie l'authentification, affiche le login |  Oui |
 | `/token` | POST | Échange code contre tokens, refresh tokens |  Oui |
 | `/userinfo` | GET/POST | Retourne les claims utilisateur |  Oui |
@@ -818,7 +818,7 @@ Backend : Session côté serveur
 ### 8.5 Algorithmes de Signature
 
 | Algorithme | Type | Recommandation |
-
+|------------|------|----------------|
 | `RS256` | RSA + SHA-256 |  Recommandé (asymétrique) |
 | `RS384` | RSA + SHA-384 |  Recommandé |
 | `RS512` | RSA + SHA-512 |  Recommandé |
@@ -833,7 +833,7 @@ Comparaison détaillée entre OpenID Connect et SAML 2.0 pour vous aider à choi
 
 
 | Critère | OpenID Connect | SAML 2.0 |
-
+|---------|----------------|----------|
 | Format des données | JSON / JWT | XML |
 | Protocole de transport | REST / OAuth 2.0 | HTTP Redirect / POST / SOAP |
 | Taille des messages | Compact (~1-2 KB) | Volumineux (~5-20 KB) |
