@@ -31,7 +31,7 @@
 |----|-------|--------|--------|
 | P0-01 | og-image.png vide | **CORRIGE** | Image PNG 1200x630 generee (74 Ko) |
 | P0-02 | Section "Missions recentes" invisible | **CORRIGE** | Fallback setTimeout 3s + classe no-js |
-| P0-03 | Tableaux non rendus guide OIDC | **CORRIGE** | 9 tableaux markdown corriges dans oidc.md |
+| P0-03 | Tableaux non rendus guide OIDC | **CORRIGE** | 11/11 tableaux rendus en HTML (verifie Playwright 2026-02-22) |
 
 ### P1 — Important
 
@@ -42,7 +42,7 @@
 | P1-03 | Google Fonts externe | **CORRIGE** | Self-host via @fontsource/inter, CSP mise a jour |
 | P1-04 | SVG sans aria-hidden | **CORRIGE** | aria-hidden="true" sur tous les SVG decoratifs (13 fichiers) |
 | P1-05 | Formulaire non accessible | **CORRIGE** | aria-required, legende asterisque, focus ring 2px |
-| P1-06 | Overflow horizontal guides mobile | **CORRIGE** | overflow-x: auto sur pre et table dans global.css |
+| P1-06 | Overflow horizontal guides mobile | **CORRIGE** | Selecteurs .prose-iam pre/table + overflow-x: hidden sur conteneur (verifie Playwright mobile 375px) |
 | P1-07 | Double TOC listener | **CORRIGE** | Guard window.__tocInitialized + script is:inline |
 | P1-08 | Expertises dupliquees | **CORRIGE** | Centralise dans src/config/expertises.ts |
 | P1-09 | Config SITE non utilisee | **CORRIGE** | Import SITE dans BaseLayout, Footer, contact.astro |

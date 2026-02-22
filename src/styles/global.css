@@ -61,15 +61,23 @@
   .animate-delay-300 { transition-delay: 300ms; }
 
   /* Overflow horizontal pour code et tableaux en mobile */
+  .prose-iam pre,
   .prose pre {
     overflow-x: auto;
     max-width: 100%;
   }
 
+  .prose-iam table,
   .prose table {
     display: block;
     overflow-x: auto;
     max-width: 100%;
+  }
+
+  /* Empêcher tout débordement horizontal sur le conteneur principal */
+  .prose-iam {
+    overflow-x: hidden;
+    word-break: break-word;
   }
 
   @media (prefers-reduced-motion: reduce) {
