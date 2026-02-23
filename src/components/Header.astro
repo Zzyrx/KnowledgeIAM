@@ -12,22 +12,23 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-iam-dark/95 backdrop-blur-sm border-b border-white/10" role="banner">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Navigation principale">
-    <a href="/" class="text-xl font-bold text-iam-cyan tracking-tight">
-      JB<span class="text-white">Janssen</span>
+<header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4" role="banner">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between h-14 px-5 rounded-2xl border border-white/[0.06] bg-iam-dark/80 backdrop-blur-xl" aria-label="Navigation principale">
+    <a href="/" class="text-lg font-bold tracking-tight cursor-pointer">
+      <span class="text-iam-cyan">JB</span><span class="text-white">Janssen</span>
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden md:flex items-center gap-1">
+    <ul class="hidden md:flex items-center gap-0.5">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
             class:list={[
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2 focus:rounded',
+              'relative px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 cursor-pointer',
+              'focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2',
               currentPath === href || (href !== '/' && currentPath.startsWith(href))
-                ? 'text-iam-cyan'
+                ? 'text-white bg-white/[0.06]'
                 : 'text-iam-muted hover:text-white',
             ]}
           >
@@ -40,29 +41,30 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile menu button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden p-2 text-iam-muted hover:text-white"
+      class="md:hidden p-2 text-iam-muted hover:text-white transition-colors cursor-pointer"
       aria-label="Ouvrir le menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </nav>
 
   <!-- Mobile nav -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-iam-dark/95 backdrop-blur-sm">
-    <ul class="px-4 py-3 space-y-1">
+  <div id="mobile-menu" class="hidden md:hidden mt-2 mx-auto max-w-6xl rounded-2xl border border-white/[0.06] bg-iam-dark/95 backdrop-blur-xl">
+    <ul class="p-3 space-y-0.5">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
             class:list={[
-              'block px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2 focus:rounded',
+              'block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200 cursor-pointer',
+              'focus:outline-2 focus:outline-iam-cyan focus:outline-offset-2',
               currentPath === href || (href !== '/' && currentPath.startsWith(href))
-                ? 'text-iam-cyan bg-white/5'
-                : 'text-iam-muted hover:text-white hover:bg-white/5',
+                ? 'text-white bg-white/[0.06]'
+                : 'text-iam-muted hover:text-white hover:bg-white/[0.04]',
             ]}
           >
             {label}

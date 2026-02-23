@@ -9,10 +9,10 @@ interface Props {
 const { title, description, icon, href } = Astro.props;
 ---
 
-<a href={href} class="group block p-6 rounded-xl border border-white/10 bg-iam-medium/50 hover:border-iam-cyan/30 hover:bg-iam-medium transition-all">
-  <div class="w-12 h-12 rounded-lg bg-iam-cyan/10 flex items-center justify-center mb-4 group-hover:bg-iam-cyan/20 transition-colors">
+<a href={href} class="group block glass-card-hover p-6 cursor-pointer">
+  <div class="w-11 h-11 rounded-xl bg-iam-cyan/10 flex items-center justify-center mb-4 group-hover:bg-iam-cyan/20 transition-colors duration-300">
     <Fragment set:html={icon} />
   </div>
-  <h3 class="text-lg font-semibold text-white mb-2">{title}</h3>
+  <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-iam-cyan transition-colors duration-300">{title}</h3>
   <p class="text-sm text-iam-muted leading-relaxed">{description}</p>
 </a>

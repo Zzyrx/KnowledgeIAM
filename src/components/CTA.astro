@@ -6,25 +6,27 @@ interface Props {
 
 const {
   title = 'Un projet IAM en vue ?',
-  description = 'Discutons de vos besoins en gestion des identités et des accès.',
+  description = 'Discutons de vos besoins en gestion des identites et des acces.',
 } = Astro.props;
 ---
 
-<section class="py-16 sm:py-20">
+<section class="py-20 sm:py-24">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <div class="p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-iam-medium to-iam-dark border border-white/10">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white">{title}</h2>
-      <p class="mt-4 text-iam-muted max-w-xl mx-auto">{description}</p>
-      <div class="mt-8">
-        <a
-          href="/contact/"
-          class="inline-flex items-center gap-2 px-8 py-3 bg-iam-cyan text-iam-dark font-semibold rounded-lg hover:bg-iam-cyan/90 transition-colors"
-        >
-          Discutons de votre projet
-          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+    <div class="relative p-10 sm:p-14 rounded-3xl border border-white/[0.06] bg-iam-surface/40 overflow-hidden">
+      <!-- Glow en arriere-plan -->
+      <div class="absolute inset-0 bg-gradient-to-br from-iam-cyan/[0.05] via-transparent to-iam-violet/[0.05]"></div>
+
+      <div class="relative">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">{title}</h2>
+        <p class="mt-4 text-iam-muted max-w-xl mx-auto">{description}</p>
+        <div class="mt-8">
+          <a href="/contact/" class="btn-primary">
+            Discutons de votre projet
+            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>

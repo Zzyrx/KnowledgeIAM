@@ -40,7 +40,7 @@ const techArticleSchema = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <header class="max-w-4xl mb-12">
-        <a href="/guides/" class="inline-flex items-center gap-1 text-sm text-iam-muted hover:text-iam-cyan transition-colors mb-6">
+        <a href="/guides/" class="inline-flex items-center gap-1 text-sm text-iam-muted hover:text-iam-cyan transition-colors duration-200 mb-6 cursor-pointer">
           <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
@@ -48,7 +48,7 @@ const techArticleSchema = {
         </a>
         <h1 class="text-3xl sm:text-4xl font-bold">{title}</h1>
         <p class="mt-4 text-lg text-iam-muted leading-relaxed">{description}</p>
-        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-iam-muted">
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-iam-muted/70">
           <span class="flex items-center gap-1.5">
             <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -71,17 +71,17 @@ const techArticleSchema = {
         <!-- Main content -->
         <div class="flex-1 min-w-0 max-w-4xl
           prose-iam
-          prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-white/10
+          prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-white/[0.06]
           prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-4
           prose-table:text-sm
-          prose-th:text-iam-muted prose-th:font-medium prose-th:border-white/10
-          prose-td:text-iam-muted prose-td:border-white/10">
+          prose-th:text-iam-muted prose-th:font-medium prose-th:border-white/[0.06]
+          prose-td:text-iam-muted prose-td:border-white/[0.06]">
           <slot />
         </div>
 
         <!-- Sidebar TOC (desktop) -->
         <aside class="hidden xl:block w-64 flex-shrink-0">
-          <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
+          <div class="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
             <TableOfContents headings={headings} />
           </div>
         </aside>
@@ -91,8 +91,8 @@ const techArticleSchema = {
       <div class="xl:hidden fixed bottom-4 right-4 z-40">
         <button
           id="toc-toggle"
-          class="w-12 h-12 bg-iam-cyan text-iam-dark rounded-full shadow-lg flex items-center justify-center hover:bg-iam-cyan/90 transition-colors"
-          aria-label="Table des matières"
+          class="w-12 h-12 bg-iam-cyan text-iam-dark rounded-2xl shadow-lg shadow-iam-cyan/20 flex items-center justify-center hover:shadow-iam-cyan/30 transition-shadow cursor-pointer"
+          aria-label="Table des matieres"
         >
           <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -101,7 +101,7 @@ const techArticleSchema = {
         <div
           id="toc-mobile"
           tabindex="-1"
-          class="hidden absolute bottom-14 right-0 w-72 max-h-96 overflow-y-auto bg-iam-dark border border-white/10 rounded-xl shadow-xl p-4"
+          class="hidden absolute bottom-14 right-0 w-72 max-h-96 overflow-y-auto glass-card shadow-xl p-4"
         >
           <TableOfContents headings={headings} />
         </div>
@@ -116,13 +116,11 @@ const techArticleSchema = {
 
   btn?.addEventListener('click', () => {
     panel?.classList.toggle('hidden');
-    // Focus programmatique quand le panneau s'ouvre
     if (!panel?.classList.contains('hidden')) {
       panel?.focus();
     }
   });
 
-  // Close on link click (mobile)
   panel?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => panel?.classList.add('hidden'));
   });

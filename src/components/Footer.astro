@@ -3,42 +3,42 @@ import { SITE } from '../config/site';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-white/10 bg-iam-dark" role="contentinfo">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="border-t border-white/[0.06] bg-iam-dark" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
       <!-- Brand -->
       <div>
-        <a href="/" class="text-xl font-bold text-iam-cyan tracking-tight">
-          JB<span class="text-white">Janssen</span>
+        <a href="/" class="text-lg font-bold tracking-tight cursor-pointer">
+          <span class="text-iam-cyan">JB</span><span class="text-white">Janssen</span>
         </a>
-        <p class="mt-3 text-iam-muted text-sm leading-relaxed">
+        <p class="mt-4 text-iam-muted text-sm leading-relaxed max-w-xs">
           Expert IAM / SSO — ForgeRock, Entra ID, SAML, OIDC.<br />
-          Nantes, France — Remote France entière.
+          Nantes, France — Remote France entiere.
         </p>
       </div>
 
       <!-- Navigation -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Navigation</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/expertise/" class="text-iam-muted hover:text-iam-cyan transition-colors">Expertise</a></li>
-          <li><a href="/missions/" class="text-iam-muted hover:text-iam-cyan transition-colors">Missions</a></li>
-          <li><a href="/guides/" class="text-iam-muted hover:text-iam-cyan transition-colors">Guides</a></li>
-          <li><a href="/contact/" class="text-iam-muted hover:text-iam-cyan transition-colors">Contact</a></li>
+        <h3 class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">Navigation</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/expertise/" class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">Expertise</a></li>
+          <li><a href="/missions/" class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">Missions</a></li>
+          <li><a href="/guides/" class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">Guides</a></li>
+          <li><a href="/contact/" class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">Contact</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Contact</h3>
-        <ul class="space-y-2 text-sm">
+        <h3 class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">Contact</h3>
+        <ul class="space-y-2.5 text-sm">
           <li>
-            <a href={`mailto:${SITE.email}`} class="text-iam-muted hover:text-iam-cyan transition-colors">
+            <a href={`mailto:${SITE.email}`} class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">
               {SITE.email}
             </a>
           </li>
           <li>
-            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-iam-cyan transition-colors">
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="text-iam-muted hover:text-white transition-colors duration-200 cursor-pointer">
               LinkedIn
             </a>
           </li>
@@ -46,8 +46,8 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-10 pt-6 border-t border-white/10 text-center text-sm text-iam-muted">
-      &copy; {currentYear} Jean-Baptiste Janssen. Tous droits réservés.
+    <div class="mt-12 pt-6 border-t border-white/[0.06] text-center text-sm text-iam-muted/60">
+      &copy; {currentYear} Jean-Baptiste Janssen. Tous droits reserves.
     </div>
   </div>
 </footer>

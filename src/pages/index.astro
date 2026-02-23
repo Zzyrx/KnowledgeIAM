@@ -7,8 +7,8 @@ import CTA from '../components/CTA.astro';
 import { expertises } from '../config/expertises';
 
 const stats = [
-  { value: '4 ans', label: "d'expérience IAM" },
-  { value: '50+', label: 'applications intégrées en SSO' },
+  { value: '4 ans', label: "d'experience IAM" },
+  { value: '50+', label: 'applications integrees en SSO' },
   { value: '2', label: 'grands comptes (EDF, Allianz)' },
 ];
 ---
@@ -16,16 +16,20 @@ const stats = [
 <BaseLayout title="Jean-Baptiste Janssen — Expert IAM / SSO">
   <!-- Hero -->
   <Hero
-    title='Expert <span class="text-iam-cyan">IAM</span> / <span class="text-iam-cyan">SSO</span>'
-    subtitle="Freelance spécialisé en gestion des identités et des accès. ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC — je sécurise et simplifie vos accès."
+    title='Expert <span class="text-gradient">IAM</span> / <span class="text-gradient">SSO</span>'
+    subtitle="Freelance specialise en gestion des identites et des acces. ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC — je securise et simplifie vos acces."
     cta={{ label: 'Discutons de votre projet', href: '/contact/' }}
+    badge="Disponible pour missions"
   />
 
   <!-- Expertise -->
-  <section class="py-16 sm:py-20">
+  <section class="py-20 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 animate-on-scroll">Domaines d'expertise</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="text-center mb-14 animate-on-scroll">
+        <h2 class="text-2xl sm:text-3xl font-bold">Domaines d'expertise</h2>
+        <p class="mt-3 text-iam-muted max-w-lg mx-auto">Solutions IAM completes, de l'annuaire aux protocoles de federation</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         {expertises.slice(0, 3).map((exp, i) => (
           <div class:list={['animate-on-scroll', i === 1 && 'animate-delay-100', i === 2 && 'animate-delay-200']}>
             <ExpertiseCard {...exp} />
@@ -35,14 +39,14 @@ const stats = [
     </div>
   </section>
 
-  <!-- Chiffres clés -->
-  <section class="py-16 sm:py-20 bg-iam-medium/30">
+  <!-- Chiffres cles -->
+  <section class="py-20 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {stats.map(({ value, label }, i) => (
-          <div class:list={['animate-on-scroll', i === 1 && 'animate-delay-100', i === 2 && 'animate-delay-200']}>
-            <div class="text-3xl sm:text-4xl font-bold text-iam-cyan">{value}</div>
-            <div class="mt-2 text-iam-muted">{label}</div>
+          <div class:list={['animate-on-scroll glass-card p-8 text-center', i === 1 && 'animate-delay-100', i === 2 && 'animate-delay-200']}>
+            <div class="text-3xl sm:text-4xl font-bold text-gradient">{value}</div>
+            <div class="mt-2 text-sm text-iam-muted">{label}</div>
           </div>
         ))}
       </div>
@@ -50,20 +54,23 @@ const stats = [
   </section>
 
   <!-- Missions -->
-  <section class="py-16 sm:py-20">
+  <section class="py-20 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 animate-on-scroll">Missions récentes</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="text-center mb-14 animate-on-scroll">
+        <h2 class="text-2xl sm:text-3xl font-bold">Missions recentes</h2>
+        <p class="mt-3 text-iam-muted">Interventions IAM en contexte grand compte</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="animate-on-scroll">
           <MissionCard
-            company="EDF — Équipe Raccordement SSO"
-            role="Intégrateur SSO"
+            company="EDF — Equipe Raccordement SSO"
+            role="Integrateur SSO"
             period="2022 – 2024"
             highlights={[
-              'Intégration de 50+ applications en WebSSO (SAML 2.0, OIDC)',
+              'Integration de 50+ applications en WebSSO (SAML 2.0, OIDC)',
               'Configuration connecteurs LDAP / Active Directory',
               'Automatisation du raccordement via Python & Bash',
-              'Support N2/N3 sur la chaîne SSO',
+              'Support N2/N3 sur la chaine SSO',
             ]}
           />
         </div>
@@ -75,15 +82,18 @@ const stats = [
             highlights={[
               'Infrastructure Kerberos avec automatisation des keytabs',
               'Automatisation Entra ID via Graph API & PowerShell',
-              'Déploiement ForgeRock sur Kubernetes (ForgeOps)',
+              'Deploiement ForgeRock sur Kubernetes (ForgeOps)',
               'Administration OpenLDAP et support N2/N3',
             ]}
           />
         </div>
       </div>
-      <div class="text-center mt-8 animate-on-scroll">
-        <a href="/missions/" class="text-iam-cyan hover:text-iam-cyan/80 text-sm font-medium transition-colors">
-          Voir le détail des missions &rarr;
+      <div class="text-center mt-10 animate-on-scroll">
+        <a href="/missions/" class="btn-secondary text-sm">
+          Voir le detail des missions
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </a>
       </div>
     </div>

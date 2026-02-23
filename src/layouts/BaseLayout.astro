@@ -38,7 +38,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'Jean-Baptiste Janssen — Expert IAM / SSO',
-  description: 'Consultant freelance spécialisé en gestion des identités et des accès (IAM). ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC.',
+  description: 'Consultant freelance specialise en gestion des identites et des acces (IAM). ForgeRock, Microsoft Entra ID, SAML 2.0, OIDC.',
   url: Astro.site?.toString(),
   provider: { '@type': 'Person', name: 'Jean-Baptiste Janssen' },
   areaServed: { '@type': 'Country', name: 'France' },
@@ -97,7 +97,7 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
     )}
 
     <!-- Theme color -->
-    <meta name="theme-color" content="#0C1933" />
+    <meta name="theme-color" content="#080C14" />
   </head>
   <body class="flex flex-col min-h-screen">
     <!-- Skip to content (a11y) -->
@@ -105,7 +105,7 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
       Aller au contenu principal
     </a>
     <Header />
-    <main id="main-content" class="flex-1 pt-16">
+    <main id="main-content" class="flex-1 pt-20">
       <slot />
     </main>
     <Footer />
@@ -123,7 +123,7 @@ const breadcrumbSchema = breadcrumbParts.length > 0 ? {
       );
       document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
 
-      // Fallback : forcer la visibilité après 3s si l'observer n'a pas déclenché
+      // Fallback : forcer la visibilite apres 3s si l'observer n'a pas declenche
       setTimeout(() => {
         document.querySelectorAll('.animate-on-scroll:not(.is-visible)').forEach((el) => {
           el.classList.add('is-visible');

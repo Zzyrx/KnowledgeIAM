@@ -28,8 +28,9 @@
   }
 }
 
-/* Classe prose commune pour les layouts blog et guide */
+/* Composants réutilisables */
 @layer components {
+  /* Classe prose pour blog et guides */
   .prose-iam {
     @apply prose prose-invert prose-cyan
       prose-headings:scroll-mt-24
@@ -37,18 +38,65 @@
       prose-li:text-iam-muted
       prose-a:text-iam-cyan prose-a:no-underline hover:prose-a:underline
       prose-strong:text-white
-      prose-code:text-iam-cyan prose-code:bg-iam-medium prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
-      prose-pre:bg-iam-medium prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl
+      prose-code:text-iam-cyan prose-code:bg-iam-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-iam-surface prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl
       prose-blockquote:border-iam-cyan prose-blockquote:text-iam-muted;
+  }
+
+  /* Carte glass */
+  .glass-card {
+    @apply rounded-2xl border border-white/[0.06] bg-iam-surface/60 backdrop-blur-sm;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300
+      hover:border-iam-cyan/20 hover:bg-iam-surface/80
+      hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.15)];
+  }
+
+  /* Texte gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-iam-cyan to-iam-violet bg-clip-text text-transparent;
+  }
+
+  /* Bouton CTA primaire */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-3.5 bg-iam-cyan text-iam-dark font-semibold rounded-xl
+      transition-all duration-200
+      hover:shadow-[0_0_24px_-4px_rgba(6,182,212,0.5)]
+      active:scale-[0.98]
+      cursor-pointer;
+  }
+
+  /* Bouton secondaire (outline) */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-8 py-3.5 border border-white/10 text-iam-muted font-semibold rounded-xl
+      transition-all duration-200
+      hover:border-iam-cyan/30 hover:text-white
+      active:scale-[0.98]
+      cursor-pointer;
+  }
+
+  /* Pattern grille en arrière-plan */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Badge tag */
+  .tag-badge {
+    @apply px-2.5 py-1 text-xs font-medium rounded-lg bg-iam-cyan/10 text-iam-cyan;
   }
 }
 
-/* Scroll animations */
+/* Animations scroll */
 @layer utilities {
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-on-scroll.is-visible {
@@ -56,9 +104,9 @@
     transform: translateY(0);
   }
 
-  .animate-delay-100 { transition-delay: 100ms; }
-  .animate-delay-200 { transition-delay: 200ms; }
-  .animate-delay-300 { transition-delay: 300ms; }
+  .animate-delay-100 { transition-delay: 80ms; }
+  .animate-delay-200 { transition-delay: 160ms; }
+  .animate-delay-300 { transition-delay: 240ms; }
 
   /* Overflow horizontal pour code et tableaux en mobile */
   .prose-iam pre,
@@ -74,7 +122,6 @@
     max-width: 100%;
   }
 
-  /* Empêcher tout débordement horizontal sur le conteneur principal */
   .prose-iam {
     overflow-x: hidden;
     word-break: break-word;
@@ -94,7 +141,7 @@
   }
 }
 
-/* Fallback no-JS : éléments visibles sans JavaScript */
+/* Fallback no-JS */
 @layer base {
   html.no-js .animate-on-scroll {
     opacity: 1;
