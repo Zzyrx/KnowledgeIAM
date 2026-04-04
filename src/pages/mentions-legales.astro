@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Mentions legales — Jean-Baptiste Janssen"
+  description="Mentions legales et politique de confidentialite du site Jean-Baptiste Janssen, Expert IAM / SSO."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl sm:text-4xl font-bold mb-12">Mentions legales</h1>
+
+      <div class="prose-iam space-y-10">
+        <!-- Editeur du site -->
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-4">Editeur du site</h2>
+          <ul class="space-y-2 text-iam-muted text-sm leading-relaxed">
+            <li><span class="text-white font-medium">Nom :</span> Jean-Baptiste Janssen</li>
+            <li><span class="text-white font-medium">Statut :</span> Consultant freelance (micro-entreprise)</li>
+            <li><span class="text-white font-medium">Activite :</span> Expert IAM / SSO</li>
+            <li><span class="text-white font-medium">Localisation :</span> Nantes, France</li>
+            <li><span class="text-white font-medium">Email :</span> <a href={`mailto:${SITE.email}`} class="text-iam-cyan hover:underline">{SITE.email}</a></li>
+            <li><span class="text-white font-medium">LinkedIn :</span> <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="text-iam-cyan hover:underline">linkedin.com/in/jeanbaptistejanssen</a></li>
+          </ul>
+        </div>
+
+        <!-- Hebergement -->
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-4">Hebergement</h2>
+          <ul class="space-y-2 text-iam-muted text-sm leading-relaxed">
+            <li><span class="text-white font-medium">Hebergeur :</span> Netlify, Inc.</li>
+            <li><span class="text-white font-medium">Adresse :</span> 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</li>
+            <li><span class="text-white font-medium">Site :</span> netlify.com</li>
+          </ul>
+        </div>
+
+        <!-- Propriete intellectuelle -->
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-4">Propriete intellectuelle</h2>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            L'ensemble du contenu de ce site (textes, guides techniques, code, design, images)
+            est la propriete de Jean-Baptiste Janssen, sauf mention contraire.
+            Toute reproduction, meme partielle, est soumise a autorisation prealable.
+          </p>
+        </div>
+
+        <!-- Politique de confidentialite -->
+        <div id="confidentialite">
+          <h2 class="text-xl font-semibold text-white mb-4">Politique de confidentialite</h2>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Responsable du traitement</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Jean-Baptiste Janssen — <a href={`mailto:${SITE.email}`} class="text-iam-cyan hover:underline">{SITE.email}</a>
+          </p>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Donnees collectees</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Le formulaire de contact collecte les donnees suivantes :
+          </p>
+          <ul class="mt-2 space-y-1 text-iam-muted text-sm list-disc list-inside">
+            <li>Nom</li>
+            <li>Adresse email</li>
+            <li>Entreprise (facultatif)</li>
+            <li>Message</li>
+          </ul>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Finalite du traitement</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Ces donnees sont collectees dans le seul but de repondre a votre demande de contact.
+            Elles ne sont ni vendues, ni transmises a des tiers, ni utilisees a des fins commerciales.
+          </p>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Base legale</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Le traitement repose sur votre consentement (article 6.1.a du RGPD),
+            recueilli via la case a cocher du formulaire de contact.
+          </p>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Duree de conservation</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Les donnees sont conservees pendant 12 mois a compter de la soumission,
+            puis supprimees de la plateforme Netlify Forms.
+          </p>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Sous-traitant</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Les soumissions du formulaire sont traitees par Netlify, Inc. (hebergeur)
+            dans le cadre de son service Netlify Forms. Les donnees peuvent etre stockees
+            aux Etats-Unis. Netlify adhere aux mecanismes de transfert de donnees conformes au RGPD.
+          </p>
+
+          <h3 class="text-lg font-medium text-white mt-6 mb-3">Vos droits</h3>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Conformement au RGPD, vous disposez des droits suivants :
+          </p>
+          <ul class="mt-2 space-y-1 text-iam-muted text-sm list-disc list-inside">
+            <li>Droit d'acces a vos donnees personnelles</li>
+            <li>Droit de rectification</li>
+            <li>Droit a l'effacement (droit a l'oubli)</li>
+            <li>Droit a la limitation du traitement</li>
+            <li>Droit a la portabilite des donnees</li>
+            <li>Droit d'opposition</li>
+            <li>Droit de retirer votre consentement a tout moment</li>
+          </ul>
+          <p class="mt-3 text-iam-muted text-sm leading-relaxed">
+            Pour exercer ces droits, contactez-moi a
+            <a href={`mailto:${SITE.email}`} class="text-iam-cyan hover:underline">{SITE.email}</a>.
+            Vous pouvez egalement adresser une reclamation a la CNIL (cnil.fr).
+          </p>
+        </div>
+
+        <!-- Cookies et traceurs -->
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-4">Cookies et traceurs</h2>
+          <p class="text-iam-muted text-sm leading-relaxed">
+            Ce site n'utilise aucun cookie, aucun traceur, aucun outil d'analytics
+            et aucun script tiers. Aucune donnee de navigation n'est collectee.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

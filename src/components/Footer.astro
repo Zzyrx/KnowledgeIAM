@@ -46,8 +46,9 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-12 pt-6 border-t border-white/[0.06] text-center text-sm text-iam-muted/60">
-      &copy; {currentYear} Jean-Baptiste Janssen. Tous droits reserves.
+    <div class="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-iam-muted/60">
+      <span>&copy; {currentYear} Jean-Baptiste Janssen. Tous droits reserves.</span>
+      <a href="/mentions-legales/" class="hover:text-iam-muted transition-colors duration-200">Mentions legales</a>
     </div>
   </div>
 </footer>

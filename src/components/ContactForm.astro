@@ -22,6 +22,7 @@
         required
         aria-required="true"
         autocomplete="name"
+        maxlength="100"
         class="w-full px-4 py-3 rounded-xl bg-iam-surface border border-white/[0.06] text-white placeholder-iam-muted/40 focus:border-iam-cyan/50 focus:ring-2 focus:ring-iam-cyan/20 outline-none transition-all duration-200"
         placeholder="Votre nom"
       />
@@ -48,6 +49,7 @@
       id="company"
       name="company"
       autocomplete="organization"
+      maxlength="200"
       class="w-full px-4 py-3 rounded-xl bg-iam-surface border border-white/[0.06] text-white placeholder-iam-muted/40 focus:border-iam-cyan/50 focus:ring-2 focus:ring-iam-cyan/20 outline-none transition-all duration-200"
       placeholder="Votre entreprise"
     />
@@ -65,6 +67,21 @@
       class="w-full px-4 py-3 rounded-xl bg-iam-surface border border-white/[0.06] text-white placeholder-iam-muted/40 focus:border-iam-cyan/50 focus:ring-2 focus:ring-iam-cyan/20 outline-none transition-all duration-200 resize-y"
       placeholder="Decrivez votre projet ou votre besoin..."
     ></textarea>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="rgpd-consent"
+      name="rgpd-consent"
+      required
+      aria-required="true"
+      class="mt-1 w-4 h-4 rounded border-white/20 bg-iam-surface text-iam-cyan focus:ring-iam-cyan/30 accent-[#06B6D4] cursor-pointer"
+    />
+    <label for="rgpd-consent" class="text-sm text-iam-muted leading-relaxed cursor-pointer">
+      J'accepte que mes données soient traitées pour répondre à ma demande.
+      Consultez la <a href="/mentions-legales/" class="text-iam-cyan hover:underline">politique de confidentialité</a>.
+    </label>
   </div>
 
   <button type="submit" class="btn-primary cursor-pointer">
