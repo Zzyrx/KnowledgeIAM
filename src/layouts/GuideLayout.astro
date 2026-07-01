@@ -109,19 +109,3 @@ const techArticleSchema = {
     </div>
   </article>
 </BaseLayout>
-
-<script>
-  const btn = document.getElementById('toc-toggle');
-  const panel = document.getElementById('toc-mobile');
-
-  btn?.addEventListener('click', () => {
-    panel?.classList.toggle('hidden');
-    if (!panel?.classList.contains('hidden')) {
-      panel?.focus();
-    }
-  });
-
-  panel?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => panel?.classList.add('hidden'));
-  });
-</script>
