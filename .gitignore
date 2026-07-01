@@ -30,3 +30,7 @@ npm-debug.log*
 
 # Claude Code
 .claude/
+
+# Documents personnels (ne pas exposer sur le repo public)
+CV_JeanBaptiste_Janssen_Expert_IAM.pdf
+*.pdf
