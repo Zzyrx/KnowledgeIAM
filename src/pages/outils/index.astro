@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+
+// Outils interactifs IAM — tout tourne côté navigateur, aucun backend.
+const tools = [
+  {
+    title: 'Décodeur JWT',
+    description:
+      "Collez un JSON Web Token pour inspecter son header, ses claims et sa date d'expiration. Détection des pièges de sécurité (alg: none, token expiré).",
+    href: '/outils/decodeur-jwt/',
+    status: 'available' as const,
+    tags: ['OAuth 2.0', 'OIDC', 'JWT'],
+  },
+  {
+    title: "Décodeur d'assertion SAML",
+    description:
+      "Décodez et formatez une SAMLResponse pour lire le NameID, les attributs et les conditions de validité.",
+    href: '#',
+    status: 'soon' as const,
+    tags: ['SAML 2.0', 'SSO'],
+  },
+];
+---
+
+<BaseLayout
+  title="Outils IAM interactifs — Jean-Baptiste Janssen"
+  description="Outils interactifs pour les protocoles d'identité : décodeur JWT, décodeur SAML. Traitement 100 % local dans votre navigateur, aucun token n'est envoyé."
+>
+  <section class="py-16 sm:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <h1 class="text-3xl sm:text-4xl font-bold">Outils IAM interactifs</h1>
+        <p class="mt-4 text-lg text-iam-muted max-w-2xl mx-auto">
+          Des outils de diagnostic pour les protocoles de fédération, directement dans le navigateur.
+        </p>
+      </div>
+
+      <!-- Bandeau confidentialité -->
+      <div class="max-w-2xl mx-auto mb-14 flex items-start gap-3 p-4 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06]">
+        <svg aria-hidden="true" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <p class="text-sm text-iam-muted leading-relaxed">
+          <strong class="text-white">Traitement 100 % local.</strong> Tout le décodage se fait dans votre
+          navigateur en JavaScript. Aucun token, aucune donnée n'est envoyé ni stocké sur un serveur.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {tools.map((tool) => (
+          <div class="glass-card p-6 flex flex-col">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <h2 class="text-lg font-semibold text-white">{tool.title}</h2>
+              {tool.status === 'soon' && (
+                <span class="text-xs font-medium text-iam-muted bg-white/[0.06] px-2.5 py-1 rounded-full">Bientôt</span>
+              )}
+            </div>
+            <p class="text-sm text-iam-muted leading-relaxed flex-1">{tool.description}</p>
+            <div class="flex flex-wrap gap-2 mt-4 mb-5">
+              {tool.tags.map((tag) => (
+                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-iam-cyan/10 text-iam-cyan border border-iam-cyan/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            {tool.status === 'available' ? (
+              <a href={tool.href} class="btn-primary text-sm self-start">
+                Ouvrir l'outil
+                <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            ) : (
+              <span class="btn-secondary text-sm self-start opacity-60 cursor-default">En préparation</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
