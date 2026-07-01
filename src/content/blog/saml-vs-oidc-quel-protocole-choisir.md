@@ -25,7 +25,7 @@ SAML reste incontournable dans ces situations :
 - **Écosystèmes entreprise matures** déjà construits autour de SAML
 - **Exigences réglementaires** spécifiant SAML explicitement
 
-Chez EDF, la majorité des 50+ intégrations SSO étaient en SAML 2.0. Pourquoi ? Parce que le parc applicatif existant supportait majoritairement SAML, et les partenaires externes fournissaient des métadonnées SAML.
+Chez EDF, la majorité des 500+ intégrations SSO étaient en SAML 2.0. Pourquoi ? Parce que le parc applicatif existant supportait majoritairement SAML, et les partenaires externes fournissaient des métadonnées SAML.
 
 ## Quand choisir OIDC
 

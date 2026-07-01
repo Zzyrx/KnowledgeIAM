@@ -26,7 +26,7 @@ export const expertises = [
   },
   {
     title: 'Protocoles SSO',
-    description: 'SAML 2.0, OpenID Connect, OAuth 2.0 — maîtrise complète des flux, intégration, troubleshooting et guides détaillés.',
+    description: 'SAML 2.0, OpenID Connect, OAuth 2.0, SCIM — maîtrise complète des flux, provisioning, intégration, troubleshooting et guides détaillés.',
     href: '/expertise/protocoles/',
     icon: '<svg aria-hidden="true" class="w-6 h-6 text-iam-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
   },

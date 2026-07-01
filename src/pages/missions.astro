@@ -5,7 +5,7 @@ import CTA from '../components/CTA.astro';
 
 <BaseLayout
   title="Missions — Jean-Baptiste Janssen"
-  description="Références missions IAM : EDF (intégration SSO, 50+ applications) et Allianz (transformation IAM, ForgeRock, Entra ID)."
+  description="Références missions IAM : EDF (intégration SSO, 500+ applications) et Allianz (transformation IAM, team lead, ForgeRock, Entra ID)."
 >
   <section class="py-16 sm:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,13 +27,15 @@ import CTA from '../components/CTA.astro';
           </div>
           <div>
             <h2 class="text-2xl font-bold text-white">Allianz — Transformation IAM</h2>
-            <p class="text-iam-cyan font-medium">Expert IAM — 2024 à 2026</p>
+            <p class="text-iam-cyan font-medium">Consultant IAM / Ingénieur SSO · Team lead — 2023 à aujourd'hui</p>
           </div>
         </div>
 
         <div class="pl-0 sm:pl-16 space-y-6">
           <p class="text-iam-muted leading-relaxed">
-            Mission de transformation de l'infrastructure IAM d'Allianz France.
+            Mission de transformation de l'infrastructure IAM d'Allianz.
+            <strong class="text-white">Team lead d'une équipe de 3 experts IAM</strong> :
+            coordination des travaux, montée en compétences et qualité des livrables.
             Intervention sur l'ensemble de la chaîne IAM : ForgeRock, Entra ID, Kerberos,
             OpenLDAP. Support N2/N3 et automatisation des processus.
           </p>
@@ -108,12 +110,16 @@ import CTA from '../components/CTA.astro';
                   <span class="text-iam-cyan mt-1">&#8226;</span>
                   Intégration avec ForgeRock DS et AD
                 </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Gestion des groupes et du contrôle d'accès applicatif (RBAC)
+                </li>
               </ul>
             </div>
           </div>
 
           <div class="flex flex-wrap gap-2 mt-4">
-            {['ForgeRock', 'Entra ID', 'Kerberos', 'OpenLDAP', 'PowerShell', 'Graph API', 'Kubernetes', 'SAML 2.0', 'OIDC'].map(tag => (
+            {['Team lead', 'ForgeRock', 'Entra ID', 'Kerberos', 'OpenLDAP', 'RBAC', 'PowerShell', 'Graph API', 'Kubernetes', 'SAML 2.0', 'OIDC'].map(tag => (
               <span class="px-3 py-1 text-xs font-medium rounded-full bg-iam-cyan/10 text-iam-cyan border border-iam-cyan/20">
                 {tag}
               </span>
@@ -134,13 +140,13 @@ import CTA from '../components/CTA.astro';
           </div>
           <div>
             <h2 class="text-2xl font-bold text-white">EDF — Équipe Raccordement SSO</h2>
-            <p class="text-iam-cyan font-medium">Intégrateur SSO — 2022 à 2024</p>
+            <p class="text-iam-cyan font-medium">Consultant IAM / Ingénieur SSO — 2022 à 2023</p>
           </div>
         </div>
 
         <div class="pl-0 sm:pl-16 space-y-6">
           <p class="text-iam-muted leading-relaxed">
-            Intégration de plus de 50 applications au WebSSO d'EDF. Rattaché à l'équipe
+            Intégration de plus de 500 applications au WebSSO d'EDF. Rattaché à l'équipe
             de raccordement SSO, j'ai assuré l'intégration technique des applications métier
             en SAML 2.0 et OIDC, ainsi que le support N2/N3.
           </p>
@@ -151,7 +157,7 @@ import CTA from '../components/CTA.astro';
               <ul class="space-y-2 text-sm text-iam-muted">
                 <li class="flex items-start gap-2">
                   <span class="text-iam-cyan mt-1">&#8226;</span>
-                  50+ applications raccordées en SSO
+                  500+ applications raccordées en SSO
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-iam-cyan mt-1">&#8226;</span>
@@ -177,14 +183,18 @@ import CTA from '../components/CTA.astro';
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-iam-cyan mt-1">&#8226;</span>
-                  Support N2/N3 sur la chaîne SSO
+                  Support N2/N3 et documentation technique
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-iam-cyan mt-1">&#8226;</span>
+                  Collaboration avec les équipes sécurité et architecture
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="flex flex-wrap gap-2 mt-4">
-            {['SAML 2.0', 'OIDC', 'LDAP', 'Active Directory', 'Python', 'Bash', 'WebSSO'].map(tag => (
+            {['SAML 2.0', 'OIDC', 'LDAP', 'Active Directory', 'Itzmi', 'Python', 'Bash', 'WebSSO'].map(tag => (
               <span class="px-3 py-1 text-xs font-medium rounded-full bg-iam-cyan/10 text-iam-cyan border border-iam-cyan/20">
                 {tag}
               </span>

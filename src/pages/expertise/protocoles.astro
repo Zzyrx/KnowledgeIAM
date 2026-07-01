@@ -5,14 +5,14 @@ const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColo
 ---
 
 <ExpertiseLayout
-  title="Protocoles SSO — SAML 2.0 / OIDC / OAuth 2.0"
-  description="Maîtrise complète des protocoles de fédération d'identités. Intégration, troubleshooting et formation sur SAML 2.0, OpenID Connect et OAuth 2.0."
+  title="Protocoles SSO — SAML 2.0 / OIDC / OAuth 2.0 / SCIM"
+  description="Maîtrise complète des protocoles de fédération d'identités. Intégration, provisioning SCIM, troubleshooting et formation sur SAML 2.0, OpenID Connect et OAuth 2.0."
   icon={icon}
 >
   <h2>Mon expérience</h2>
   <p>
-    Les protocoles de fédération sont au cœur de mon métier depuis 4 ans. Chez EDF (2022–2024),
-    j'ai intégré <strong>50+ applications en SSO</strong> via SAML 2.0 et OIDC. Chez Allianz (2024–2026),
+    Les protocoles de fédération sont au cœur de mon métier depuis 4 ans. Chez EDF (2022–2023),
+    j'ai intégré <strong>500+ applications en SSO</strong> via SAML 2.0 et OIDC. Chez Allianz (depuis 2023),
     je gère la fédération B2B et l'intégration des applications internes avec ForgeRock AM et Entra ID.
   </p>
 
@@ -49,6 +49,18 @@ const icon = '<svg class="w-7 h-7 text-iam-cyan" fill="none" stroke="currentColo
     <li>Protection des API avec des Access Tokens (Bearer)</li>
     <li>Scopes et consentement utilisateur</li>
     <li>Bonnes pratiques de sécurité (PKCE, state, nonce)</li>
+  </ul>
+
+  <h2>SCIM — Provisioning</h2>
+  <p>
+    Au-delà de l'authentification, la fédération d'identités implique de <strong>synchroniser les comptes</strong>
+    entre l'IdP et les applications. SCIM (System for Cross-domain Identity Management) standardise ce provisioning.
+  </p>
+  <ul>
+    <li>Cycle de vie des identités : création, mise à jour et désactivation automatiques des comptes</li>
+    <li>Schémas SCIM (User, Group) et mapping d'attributs vers les annuaires cibles</li>
+    <li>Provisioning via Entra ID et intégration avec les Service Providers compatibles</li>
+    <li>Complémentarité avec SAML / OIDC : SSO pour l'accès, SCIM pour le cycle de vie</li>
   </ul>
 
   <h2>Comparatif des protocoles</h2>
